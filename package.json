@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-redux": "^7.2.1",
+    "styled-components": "^5.1.1"
+  }
+}
