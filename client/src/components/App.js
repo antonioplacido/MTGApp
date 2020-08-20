@@ -11,7 +11,6 @@ function App() {
   const [cards, setCards] = useState(["Cabal Coffers", "Tolarian Academy"]);
   return (
     <Wrapper>
-      Hello!
       <MTGList cards={cards} />
       <Login />
     </Wrapper>
