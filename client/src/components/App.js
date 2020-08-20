@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import Login from "./Login";
 import MTGList from "./MTGList";
-import Tolarian from "../src/assets/tolarianacademy.jpg";
+import Tolarian from "../assets/tolarianacademy.jpg";
 
 function App() {
   const [cards, setCards] = useState(["Cabal Coffers", "Tolarian Academy"]);
@@ -26,7 +26,7 @@ const Wrapper = styled.div`
     content: "";
     background: url(${Tolarian}) no-repeat center center fixed;
     background-size: cover;
-    opacity: 0.35;
+    opacity: 0.25;
     top: 0;
     left: 0;
     bottom: 0;
