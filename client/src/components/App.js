@@ -8,12 +8,19 @@ import MTGList from "./MTGList";
 import Tolarian from "../assets/tolarianacademy.jpg";
 
 function App() {
-  const [cards, setCards] = useState(["Cabal Coffers", "Tolarian Academy"]);
+  const dispatch = useDispatch();
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    dispatch;
+  });
   return (
-    <Wrapper>
-      <MTGList cards={cards} />
-      <Login />
-    </Wrapper>
+    <>
+      <Wrapper>
+        <MTGList cards={cards} />
+        <Login />
+      </Wrapper>
+    </>
   );
 }
 

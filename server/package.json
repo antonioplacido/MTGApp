@@ -4,6 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1"
+    "es6-promise": "^4.2.8",
+    "express": "^4.17.1",
+    "helmet": "^4.1.0",
+    "isomorphic-fetch": "^2.2.1",
+    "morgan": "^1.10.0"
   }
 }
