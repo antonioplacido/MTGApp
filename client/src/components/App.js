@@ -12,14 +12,14 @@ import Decks from "./CreateMenu/Decks";
 
 function App() {
   const dispatch = useDispatch();
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState(["Teysa", "Yawgmoth"]);
 
-  useEffect(() => {
-    dispatch(requestAllData());
-    fetchAllData()
-      .then((data) => dispatch(receiveAllData(data)))
-      .catch((err) => dispatch(receiveDataError(err)));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(requestAllData());
+  //   fetchAllData()
+  //     .then((data) => dispatch(receiveAllData(data)))
+  //     .catch((err) => dispatch(receiveDataError(err)));
+  // }, [dispatch]);
 
   return (
     <>
@@ -30,11 +30,10 @@ function App() {
             <Route exact path="/">
               <Wrapper>
                 <Login />
-                <MTGList cards={cards} />
               </Wrapper>
             </Route>
             <Route exact path="/create/commander">
-              Create Commander Deck Component
+              <MTGList cards={cards} />
             </Route>
           </Switch>
         </Main>
