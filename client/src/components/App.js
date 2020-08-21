@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import GlobalStyles from "./GlobalStyles";
-import { requestAllData } from "../action";
+import Homepage from "./Homepage";
+import StatsPage from "./StatsPage";
+import TradePage from "./TradePage";
+import WishlistPage from "./WishlistPage";
+import CollectionPage from "./CollectionPage";
+import axios from "axios";
 
 import Login from "./Login";
 import MTGList from "./MTGList";
@@ -12,14 +17,15 @@ import Decks from "./CreateMenu/Decks";
 
 function App() {
   const dispatch = useDispatch();
-  const [cards, setCards] = useState(["Teysa", "Yawgmoth"]);
+  const [cards, setCards] = useState([]);
 
-  // useEffect(() => {
-  //   dispatch(requestAllData());
-  //   fetchAllData()
-  //     .then((data) => dispatch(receiveAllData(data)))
-  //     .catch((err) => dispatch(receiveDataError(err)));
-  // }, [dispatch]);
+  useEffect(() => {
+    axios
+      .get("https://api.scryfall.com/cards/search?q=legal%3Acommander")
+      .then((res) => {
+        setCards(res.data.data.map((c) => c.name));
+      });
+  }, []);
 
   return (
     <>
@@ -28,12 +34,24 @@ function App() {
         <Main>
           <Switch>
             <Route exact path="/">
-              <Wrapper>
+              <LoginWrapper>
                 <Login />
-              </Wrapper>
+              </LoginWrapper>
             </Route>
-            <Route exact path="/create/commander">
-              <MTGList cards={cards} />
+            <Route exact path="/home">
+              <Homepage />
+            </Route>
+            <Route exact path="/stats">
+              <StatsPage />
+            </Route>
+            <Route exact path="/trade">
+              <TradePage cards={cards} />
+            </Route>
+            <Route exact path="/wishlist">
+              <WishlistPage cards={cards} />
+            </Route>
+            <Route exact path="/collection">
+              <CollectionPage cards={cards} />
             </Route>
           </Switch>
         </Main>
@@ -44,8 +62,8 @@ function App() {
 
 const Main = styled.div``;
 
-const Wrapper = styled.div`
-  height: 100vh;
+const LoginWrapper = styled.div`
+  /* height: 100vh;
   width: 100vw;
   position: fixed;
 
@@ -60,7 +78,7 @@ const Wrapper = styled.div`
     right: 0;
     position: absolute;
     z-index: -1;
-  }
+  } */
 `;
 
 export default App;

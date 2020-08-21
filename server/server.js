@@ -1,6 +1,7 @@
 const express = require("express");
 const helmet = require("helmet");
 const morgan = require("morgan");
+const scryfall = require("scryfall-client");
 require("es6-promise").polyfill();
 require("isomorphic-fetch");
 
@@ -13,15 +14,9 @@ const port = 3000;
 app.get("/commandercards", (req, res) => {
   fetch("https://api.scryfall.com/cards/search?q=legal%3Acommander")
     .then((res) => res.json())
-    .then((data) => console.log("Success"));
+    .then((data) => console.log(data));
   res.send("This brings ESPER instants");
-});
-
-app.get("/create/commander", (req, res) => {
-  fetch("https://api.scryfall.com/cards/search?q=is%3Acommander")
-    .then((res) => res.json())
-    .then((data) => res.status(200).json(data));
-  res.send("Should show you all commander options");
+  console.log(data);
 });
 
 const handleFourOhFour = (req, res) => {

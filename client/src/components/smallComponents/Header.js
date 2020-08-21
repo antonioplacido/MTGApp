@@ -13,8 +13,6 @@ export default function Header() {
 
 const Left = styled.div``;
 
-const Right = styled.div``;
-
 const Wrapper = styled.div`
   height: 46px;
   border-bottom: 1px solid #161616;
