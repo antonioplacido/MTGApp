@@ -2,27 +2,48 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import GlobalStyles from "./GlobalStyles";
+import { requestAllData } from "../action";
 
 import Login from "./Login";
 import MTGList from "./MTGList";
 import Tolarian from "../assets/tolarianacademy.jpg";
+import Decks from "./CreateMenu/Decks";
 
 function App() {
   const dispatch = useDispatch();
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    dispatch;
-  });
+    dispatch(requestAllData());
+    fetchAllData()
+      .then((data) => dispatch(receiveAllData(data)))
+      .catch((err) => dispatch(receiveDataError(err)));
+  }, [dispatch]);
+
   return (
     <>
-      <Wrapper>
-        <MTGList cards={cards} />
-        <Login />
-      </Wrapper>
+      <Router>
+        <GlobalStyles />
+        <Main>
+          <Switch>
+            <Route exact path="/">
+              <Wrapper>
+                <Login />
+                <MTGList cards={cards} />
+              </Wrapper>
+            </Route>
+            <Route exact path="/create/commander">
+              Create Commander Deck Component
+            </Route>
+          </Switch>
+        </Main>
+      </Router>
     </>
   );
 }
+
+const Main = styled.div``;
 
 const Wrapper = styled.div`
   height: 100vh;
