@@ -9,6 +9,7 @@ import TradePage from "./TradePage";
 import WishlistPage from "./WishlistPage";
 import CardDatabase from "./CardDatabase";
 import axios from "axios";
+import giphy from "../assets/giphy.gif";
 
 import Login from "./Login";
 import MTGList from "./MTGList";
@@ -25,8 +26,6 @@ function App() {
   const [previousPageUrl, setPreviousPageUrl] = useState();
   const [loading, setLoading] = useState(true);
 
-  // const picture = cards.data.data;
-
   useEffect(() => {
     setLoading(true);
     let cancel;
@@ -37,7 +36,7 @@ function App() {
       .then((res) => {
         setLoading(false);
         setNextPageUrl(res.data.next_page);
-        setPreviousPageUrl(res.data.previous);
+        setPreviousPageUrl(null);
         setCards(res.data.data.map((c) => c.name));
       });
 
@@ -52,7 +51,7 @@ function App() {
     setCurrentPageUrl(previousPageUrl);
   }
 
-  if (loading) return "Loading...";
+  if (loading) return <img src={giphy} width="1500px" />;
 
   return (
     <>
@@ -77,7 +76,7 @@ function App() {
             <Route exact path="/wishlist">
               <WishlistPage cards={cards} />
             </Route>
-            <Route exact path="/collection">
+            <Route exact path="/library">
               <CardDatabase cards={cards} />
               <Pagination
                 gotoNextPage={nextPageUrl ? gotoNextPage : null}
