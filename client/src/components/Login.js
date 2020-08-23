@@ -2,6 +2,7 @@ import React from "react";
 import Footer from "../components/smallComponents/Footer";
 import Header from "../components/smallComponents/Header";
 import styled from "styled-components";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 export default function Login() {
   return (

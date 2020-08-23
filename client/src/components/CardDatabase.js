@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function CollectionPage({ cards }) {
+export default function CardDatabase({ cards }) {
   return (
     <div>
       {cards.map((c) => (

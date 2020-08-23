@@ -7,25 +7,52 @@ import Homepage from "./Homepage";
 import StatsPage from "./StatsPage";
 import TradePage from "./TradePage";
 import WishlistPage from "./WishlistPage";
-import CollectionPage from "./CollectionPage";
+import CardDatabase from "./CardDatabase";
 import axios from "axios";
 
 import Login from "./Login";
 import MTGList from "./MTGList";
 import Tolarian from "../assets/tolarianacademy.jpg";
 import Decks from "./CreateMenu/Decks";
+import Pagination from "./Pagination";
 
 function App() {
-  const dispatch = useDispatch();
   const [cards, setCards] = useState([]);
+  const [currentPageUrl, setCurrentPageUrl] = useState(
+    "https://api.scryfall.com/cards/search?q=legal%3Acommander"
+  );
+  const [nextPageUrl, setNextPageUrl] = useState();
+  const [previousPageUrl, setPreviousPageUrl] = useState();
+  const [loading, setLoading] = useState(true);
+
+  // const picture = cards.data.data;
 
   useEffect(() => {
+    setLoading(true);
+    let cancel;
     axios
-      .get("https://api.scryfall.com/cards/search?q=legal%3Acommander")
+      .get(currentPageUrl, {
+        cancelToken: new axios.CancelToken((c) => (cancel = c)),
+      })
       .then((res) => {
+        setLoading(false);
+        setNextPageUrl(res.data.next_page);
+        setPreviousPageUrl(res.data.previous);
         setCards(res.data.data.map((c) => c.name));
       });
-  }, []);
+
+    return () => cancel();
+  }, [currentPageUrl]);
+
+  function gotoNextPage() {
+    setCurrentPageUrl(nextPageUrl);
+  }
+
+  function gotoPrevPage() {
+    setCurrentPageUrl(previousPageUrl);
+  }
+
+  if (loading) return "Loading...";
 
   return (
     <>
@@ -51,7 +78,11 @@ function App() {
               <WishlistPage cards={cards} />
             </Route>
             <Route exact path="/collection">
-              <CollectionPage cards={cards} />
+              <CardDatabase cards={cards} />
+              <Pagination
+                gotoNextPage={nextPageUrl ? gotoNextPage : null}
+                gotoPrevPage={previousPageUrl ? gotoPrevPage : null}
+              />
             </Route>
           </Switch>
         </Main>
