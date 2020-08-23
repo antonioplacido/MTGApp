@@ -10,6 +10,7 @@ import WishlistPage from "./WishlistPage";
 import CardDatabase from "./CardDatabase";
 import axios from "axios";
 import giphy from "../assets/giphy.gif";
+import NavBar from "../components/NavBar";
 
 import Login from "./Login";
 import MTGList from "./MTGList";
@@ -64,6 +65,7 @@ function App() {
                 <Login />
               </LoginWrapper>
             </Route>
+            <NavBar />
             <Route exact path="/home">
               <Homepage />
             </Route>
