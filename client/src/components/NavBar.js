@@ -18,6 +18,9 @@ export default function NavBar() {
       <NavLink to="/wishlist">
         <span>Wishlist</span>
       </NavLink>
+      <NavLink to="/stats">
+        <span>Stats</span>
+      </NavLink>
       <NavLink to="/create">
         <span>Create</span>
       </NavLink>
