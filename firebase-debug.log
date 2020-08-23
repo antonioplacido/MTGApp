@@ -1,0 +1,21 @@
+[debug] [2020-08-23T18:08:27.676Z] ----------------------------------------------------------------------
+[debug] [2020-08-23T18:08:27.678Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\tonyp\Desktop\Concordia Bootcamps\mtgapp\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2020-08-23T18:08:27.679Z] CLI Version:   8.9.0
+[debug] [2020-08-23T18:08:27.679Z] Platform:      win32
+[debug] [2020-08-23T18:08:27.679Z] Node Version:  v12.18.1
+[debug] [2020-08-23T18:08:27.681Z] Time:          Sun Aug 23 2020 14:08:27 GMT-0400 (Eastern Daylight Time)
+[debug] [2020-08-23T18:08:27.681Z] ----------------------------------------------------------------------
+[debug] [2020-08-23T18:08:27.681Z] 
+[debug] [2020-08-23T18:08:27.689Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-08-23T18:08:27.690Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\tonyp\Desktop\Concordia Bootcamps\mtgapp
+
