@@ -24,7 +24,7 @@ export default function Library() {
         setLoading(false);
         setNextPageUrl(res.data.next_page);
         setPreviousPageUrl(res.data.previous);
-        setCards(res.data.data.map((c) => c.name));
+        setCards(res.data.data.map((c) => c));
       });
 
     return () => cancel();
@@ -44,6 +44,12 @@ export default function Library() {
     <div>
       <Header />
       <h1> this renders all legal commander cards</h1>
+      <form className="search-form">
+        <input className="search-bar" type="text" />
+        <button className="search-button" type="submit">
+          Search
+        </button>
+      </form>
       <Card cards={cards} />
       <Pagination
         gotoNextPage={nextPageUrl ? gotoNextPage : null}

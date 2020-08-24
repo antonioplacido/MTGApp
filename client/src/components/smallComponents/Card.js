@@ -1,25 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function Card({ cards }) {
-  let [first, second] = cards;
-  console.log(first);
-  console.log(second);
-
-  // need to return each image as HTML to return a nice pretty image
-
+export default function Card({ cards, imageUri, price, name }) {
+  console.log(name);
+  console.log(cards);
   return (
     <Wrapper>
-      {cards.map((c) => (
-        <div key={c}>
-          {c.name}
-          <Buttons>
-            <WishlistAdd>Wishlist</WishlistAdd>
-            <TradeAdd>Trade</TradeAdd>
-            <DeckAdd>Deck</DeckAdd>
-          </Buttons>
-        </div>
-      ))}
+      <h1>{name}</h1>
+      <p>Price</p>
+
+      {cards.map((c) => {
+        console.log(c);
+        return (
+          <>
+            {c.image_uris && <img src={c.image_uris.normal} alt="" />}
+            <div key={c}>
+              {c.name}
+              <Buttons>
+                <WishlistAdd>Wishlist</WishlistAdd>
+                <TradeAdd>Trade</TradeAdd>
+                <DeckAdd>Deck</DeckAdd>
+              </Buttons>
+            </div>
+          </>
+        );
+      })}
     </Wrapper>
   );
 }

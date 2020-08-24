@@ -5,13 +5,17 @@ import Card from "./smallComponents/Card";
 import styled from "styled-components";
 
 export default function CommanderPage() {
+  // setting my cards on render
   const [cards, setCards] = useState([]);
+  const [images, setImages] = useState([]);
   const [currentPageUrl, setCurrentPageUrl] = useState(
     "https://api.scryfall.com/cards/search?q=is%3Acommander"
   );
   const [nextPageUrl, setNextPageUrl] = useState();
   const [previousPageUrl, setPreviousPageUrl] = useState();
   const [loading, setLoading] = useState(true);
+  const temp = cards.data;
+  console.log(images);
 
   useEffect(() => {
     setLoading(true);
@@ -25,6 +29,7 @@ export default function CommanderPage() {
         setNextPageUrl(res.data.next_page);
         setPreviousPageUrl(res.data.previous);
         setCards(res.data.data.map((c) => c));
+        setImages(res.data.data.image_uris);
       });
 
     return () => cancel();
@@ -45,7 +50,7 @@ export default function CommanderPage() {
       <Header />
       <h1>What commander are you playing?</h1>
       <Grid style={{ margin: "50px 50px" }}>
-        <Card cards={cards} />
+        <Card cards={cards} image={images} />
       </Grid>
     </div>
   );
