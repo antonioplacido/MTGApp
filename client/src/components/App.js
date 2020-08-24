@@ -14,43 +14,9 @@ import axios from "axios";
 import Login from "./Login";
 import Tolarian from "../assets/tolarianacademy.jpg";
 import Pagination from "./Pagination";
+import CommanderPage from "./CommanderPage";
 
 function App() {
-  const [cards, setCards] = useState([]);
-  const [currentPageUrl, setCurrentPageUrl] = useState(
-    "https://api.scryfall.com/cards/search?q=legal%3Acommander"
-  );
-  const [nextPageUrl, setNextPageUrl] = useState();
-  const [previousPageUrl, setPreviousPageUrl] = useState();
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(true);
-    let cancel;
-    axios
-      .get(currentPageUrl, {
-        cancelToken: new axios.CancelToken((c) => (cancel = c)),
-      })
-      .then((res) => {
-        setLoading(false);
-        setNextPageUrl(res.data.next_page);
-        setPreviousPageUrl(res.data.previous);
-        setCards(res.data.data.map((c) => c.name));
-      });
-
-    return () => cancel();
-  }, [currentPageUrl]);
-
-  function gotoNextPage() {
-    setCurrentPageUrl(nextPageUrl);
-  }
-
-  function gotoPrevPage() {
-    setCurrentPageUrl(previousPageUrl);
-  }
-
-  if (loading) return "Loading...";
-
   return (
     <>
       <Router>
@@ -66,21 +32,20 @@ function App() {
             <Route exact path="/create">
               <CreatePage />
             </Route>
+            <Route exact path="/commander">
+              <CommanderPage />
+            </Route>
             <Route exact path="/stats">
               <StatsPage />
             </Route>
             <Route exact path="/trade">
-              <TradePage cards={cards} />
+              <TradePage />
             </Route>
             <Route exact path="/wishlist">
-              <WishlistPage cards={cards} />
+              <WishlistPage />
             </Route>
             <Route exact path="/library">
-              <Library cards={cards} />
-              <Pagination
-                gotoNextPage={nextPageUrl ? gotoNextPage : null}
-                gotoPrevPage={previousPageUrl ? gotoPrevPage : null}
-              />
+              <Library />
             </Route>
           </Switch>
         </Main>
