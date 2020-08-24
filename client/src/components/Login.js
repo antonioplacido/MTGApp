@@ -1,6 +1,6 @@
 import React from "react";
 import Footer from "../components/smallComponents/Footer";
-import Header from "../components/smallComponents/Header";
+import LoginHeader from "../components/smallComponents/LoginHeader";
 import styled from "styled-components";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
@@ -8,10 +8,10 @@ export default function Login() {
   return (
     <Wrapper>
       <Form>
-        <Header />
+        <LoginHeader />
         <Subtitle>Login or Register</Subtitle>
         <input type="text" placeholder="Username" />
-        <input type="text" placeholder="Password" />
+        <input type="password" placeholder="Password" />
         <Footer />
       </Form>
     </Wrapper>
