@@ -1,11 +1,11 @@
 import React from "react";
 import Header from "../components/smallComponents/Header";
 
-export default function WishlistPage() {
+export default function CreatePage() {
   return (
     <div>
       <Header />
-      Wishlist
+      To create deck
     </div>
   );
 }

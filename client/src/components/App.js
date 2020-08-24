@@ -7,15 +7,12 @@ import Homepage from "./Homepage";
 import StatsPage from "./StatsPage";
 import TradePage from "./TradePage";
 import WishlistPage from "./WishlistPage";
-import CardDatabase from "./CardDatabase";
+import CreatePage from "./CreatePage";
+import Library from "./Library";
 import axios from "axios";
-import giphy from "../assets/giphy.gif";
-import NavBar from "../components/NavBar";
 
 import Login from "./Login";
-import MTGList from "./MTGList";
 import Tolarian from "../assets/tolarianacademy.jpg";
-import Decks from "./CreateMenu/Decks";
 import Pagination from "./Pagination";
 
 function App() {
@@ -37,7 +34,7 @@ function App() {
       .then((res) => {
         setLoading(false);
         setNextPageUrl(res.data.next_page);
-        setPreviousPageUrl(null);
+        setPreviousPageUrl(res.data.previous);
         setCards(res.data.data.map((c) => c.name));
       });
 
@@ -52,7 +49,7 @@ function App() {
     setCurrentPageUrl(previousPageUrl);
   }
 
-  if (loading) return <img src={giphy} width="1500px" />;
+  if (loading) return "Loading...";
 
   return (
     <>
@@ -61,13 +58,13 @@ function App() {
         <Main>
           <Switch>
             <Route exact path="/">
-              <LoginWrapper>
-                <Login />
-              </LoginWrapper>
+              <Login />
             </Route>
-            <NavBar />
             <Route exact path="/home">
               <Homepage />
+            </Route>
+            <Route exact path="/create">
+              <CreatePage />
             </Route>
             <Route exact path="/stats">
               <StatsPage />
@@ -79,7 +76,7 @@ function App() {
               <WishlistPage cards={cards} />
             </Route>
             <Route exact path="/library">
-              <CardDatabase cards={cards} />
+              <Library cards={cards} />
               <Pagination
                 gotoNextPage={nextPageUrl ? gotoNextPage : null}
                 gotoPrevPage={previousPageUrl ? gotoPrevPage : null}
@@ -93,24 +90,5 @@ function App() {
 }
 
 const Main = styled.div``;
-
-const LoginWrapper = styled.div`
-  /* height: 100vh;
-  width: 100vw;
-  position: fixed;
-
-  div::after {
-    content: "";
-    background: url(${Tolarian}) no-repeat center center fixed;
-    background-size: cover;
-    opacity: 0.25;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: -1;
-  } */
-`;
 
 export default App;

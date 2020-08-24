@@ -1,5 +1,11 @@
 import React from "react";
+import Header from "../components/smallComponents/Header";
 
 export default function StatsPage() {
-  return <div>for stats</div>;
+  return (
+    <div>
+      <Header />
+      for stats
+    </div>
+  );
 }
