@@ -11,7 +11,6 @@ export default function TradePage() {
   const [nextPageUrl, setNextPageUrl] = useState();
   const [previousPageUrl, setPreviousPageUrl] = useState();
   const [loading, setLoading] = useState(true);
-  // const cardImage = res.data.data.image_uris;
 
   useEffect(() => {
     setLoading(true);
