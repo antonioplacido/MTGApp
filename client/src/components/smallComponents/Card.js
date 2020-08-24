@@ -13,7 +13,7 @@ export default function Card({ cards, imageUri, price, name }) {
         console.log(c);
         return (
           <>
-            {c.image_uris && <img src={c.image_uris.normal} alt="" />}
+            {c.image_uris && <img src={c.image_uris.small} alt="" />}
             <div key={c}>
               {c.name}
               <Buttons>
