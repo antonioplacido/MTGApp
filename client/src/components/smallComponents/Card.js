@@ -1,9 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function Card({ cards, name }) {
-  console.log(name);
-  console.log(cards);
+export default function Card({ cards }) {
   return (
     <Wrapper>
       {cards.map((c) => {
@@ -16,6 +14,9 @@ export default function Card({ cards, name }) {
                   <Buttons>
                     <WishlistAdd>Wishlist</WishlistAdd>
                     <TradeAdd>Trade</TradeAdd>
+                    {c.type_line.includes("Legendary Creature") && (
+                      <CommanderAdd>Commander</CommanderAdd>
+                    )}
                     <DeckAdd>Deck</DeckAdd>
                     <CollectionAdd>Collection</CollectionAdd>
                   </Buttons>
@@ -31,11 +32,13 @@ export default function Card({ cards, name }) {
 
 const CardWrapper = styled.div`
   display: inline-block;
-  padding: 15px;
+  padding: 20px;
   img {
     height: 400px;
   }
 `;
+
+const CommanderAdd = styled.button``;
 
 const CollectionAdd = styled.button``;
 
