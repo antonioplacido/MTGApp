@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "../components/smallComponents/Header";
 import axios from "axios";
 import Card from "./smallComponents/Card";
+import styled from "styled-components";
 
 export default function CommanderPage() {
   const [cards, setCards] = useState([]);
@@ -23,7 +24,7 @@ export default function CommanderPage() {
         setLoading(false);
         setNextPageUrl(res.data.next_page);
         setPreviousPageUrl(res.data.previous);
-        setCards(res.data.data.map((c) => c.name));
+        setCards(res.data.data.map((c) => c));
       });
 
     return () => cancel();
@@ -43,7 +44,15 @@ export default function CommanderPage() {
     <div>
       <Header />
       <h1>What commander are you playing?</h1>
-      <Card cards={cards} />
+      <Grid style={{ margin: "50px 50px" }}>
+        <Card cards={cards} />
+      </Grid>
     </div>
   );
 }
+
+const Grid = styled.div`
+  display: grid;
+  grid: repeat(6, auto) / repeat(5, auto);
+  gap: 2em;
+`;

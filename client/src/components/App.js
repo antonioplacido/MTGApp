@@ -12,8 +12,7 @@ import Library from "./Library";
 import axios from "axios";
 
 import Login from "./Login";
-import Tolarian from "../assets/tolarianacademy.jpg";
-import Pagination from "./Pagination";
+
 import CommanderPage from "./CommanderPage";
 
 function App() {
