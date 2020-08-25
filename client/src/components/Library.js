@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 import Header from "../components/smallComponents/Header";
 import axios from "axios";
 import Card from "./smallComponents/Card";
@@ -13,6 +14,8 @@ export default function Library() {
   const [nextPageUrl, setNextPageUrl] = useState();
   const [previousPageUrl, setPreviousPageUrl] = useState();
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [query, setQuery] = useState();
 
   useEffect(() => {
     setLoading(true);
@@ -29,7 +32,7 @@ export default function Library() {
       });
 
     return () => cancel();
-  }, [currentPageUrl]);
+  }, [currentPageUrl, query]);
 
   function gotoNextPage() {
     setCurrentPageUrl(nextPageUrl);
@@ -39,18 +42,36 @@ export default function Library() {
     setCurrentPageUrl(previousPageUrl);
   }
 
-  if (loading) return <img src={giphy} />;
+  if (loading) return <img src={giphy} height="1250vh" width="3000vw" />;
+
+  const updateSearch = (e) => {
+    setSearch(e.target.value);
+    console.log(search);
+  };
+
+  const getSearch = (e) => {
+    e.preventDefault();
+    setQuery(search);
+    setSearch("");
+  };
 
   return (
     <div>
       <Header />
-      <h1> this renders all legal commander cards</h1>
-      <form className="search-form">
-        <input className="search-bar" type="text" />
-        <button className="search-button" type="submit">
-          Search
-        </button>
-      </form>
+      <SearchBar>
+        <h1> Commanders</h1>
+        <form onSubmit={getSearch} className="search-form">
+          <input
+            className="search-bar"
+            type="text"
+            value={search}
+            onChange={updateSearch}
+          />
+          <button className="search-button" type="submit">
+            Search
+          </button>
+        </form>
+      </SearchBar>
       <Card cards={cards} />
       <Pagination
         gotoNextPage={nextPageUrl ? gotoNextPage : null}
@@ -59,3 +80,14 @@ export default function Library() {
     </div>
   );
 }
+
+const SearchBar = styled.div`
+  padding: 20px;
+  input {
+    height: 5vh;
+    width: 600px;
+  }
+  button {
+    height: 5vh;
+  }
+`;
