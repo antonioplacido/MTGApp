@@ -5,8 +5,6 @@ import axios from "axios";
 import Card from "./smallComponents/Card";
 import Pagination from "../components/Pagination";
 import giphy from "../assets/giphy.gif";
-import { Icon } from "react-icons-kit";
-import { search } from "react-icons-kit/fa/search";
 
 export default function Library() {
   const [cards, setCards] = useState([]);
