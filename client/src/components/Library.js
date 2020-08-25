@@ -5,6 +5,8 @@ import axios from "axios";
 import Card from "./smallComponents/Card";
 import Pagination from "../components/Pagination";
 import giphy from "../assets/giphy.gif";
+import { Icon } from "react-icons-kit";
+import { search } from "react-icons-kit/fa/search";
 
 export default function Library() {
   const [cards, setCards] = useState([]);
@@ -62,7 +64,7 @@ export default function Library() {
     <div>
       <Header />
       <SearchBar>
-        <h1> Commanders</h1>
+        <h1> Library</h1>
         <form onSubmit={getSearch} className="search-form">
           <input
             className="search-bar"

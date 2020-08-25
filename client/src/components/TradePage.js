@@ -34,6 +34,7 @@ export default function TradePage() {
   return (
     <div>
       <Header />
+      <div>display the trade page</div>
       <Card cards={cards} />
     </div>
   );
