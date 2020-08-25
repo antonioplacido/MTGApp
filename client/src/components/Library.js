@@ -42,7 +42,10 @@ export default function Library() {
     setCurrentPageUrl(previousPageUrl);
   }
 
-  if (loading) return <img src={giphy} height="1250vh" width="3000vw" />;
+  if (loading)
+    return (
+      <img src={giphy} height="1250vh" width="3000vw" alt="Liliana Vess" />
+    );
 
   const updateSearch = (e) => {
     setSearch(e.target.value);

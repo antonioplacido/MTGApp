@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import GlobalStyles from "./GlobalStyles";
 import Homepage from "./Homepage";
 import StatsPage from "./StatsPage";
@@ -9,7 +8,6 @@ import TradePage from "./TradePage";
 import WishlistPage from "./WishlistPage";
 import CreatePage from "./CreatePage";
 import Library from "./Library";
-import axios from "axios";
 
 import Login from "./Login";
 

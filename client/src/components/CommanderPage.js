@@ -14,8 +14,6 @@ export default function CommanderPage() {
   const [nextPageUrl, setNextPageUrl] = useState();
   const [previousPageUrl, setPreviousPageUrl] = useState();
   const [loading, setLoading] = useState(true);
-  const temp = cards.data;
-  console.log(images);
 
   useEffect(() => {
     setLoading(true);
@@ -46,13 +44,13 @@ export default function CommanderPage() {
   if (loading) return "Loading...";
 
   return (
-    <div>
+    <Wrapper>
       <Header />
-      <h1>i just want ben's approval</h1>
+      <h1>Commanders</h1>
       <Grid style={{ margin: "50px 50px" }}>
         <Card cards={cards} image={images} />
       </Grid>
-    </div>
+    </Wrapper>
   );
 }
 
@@ -61,3 +59,5 @@ const Grid = styled.div`
   grid: repeat(6, auto) / repeat(5, auto);
   gap: 2em;
 `;
+
+const Wrapper = styled.div``;

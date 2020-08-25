@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { SiAirtable } from "react-icons/si";
 
 export default function Card({ cards }) {
   return (
@@ -39,9 +38,7 @@ const CardWrapper = styled.div`
   }
 `;
 
-const CommanderAdd = styled.button`
-  background: ${SiAirtable};
-`;
+const CommanderAdd = styled.button``;
 
 const CollectionAdd = styled.button``;
 
