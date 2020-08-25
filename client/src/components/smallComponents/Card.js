@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { Icon } from "react-icons-kit";
+import { star } from "react-icons-kit/ikons/star";
 
 export default function Card({ cards }) {
   return (
@@ -15,7 +17,9 @@ export default function Card({ cards }) {
                     <WishlistAdd>Wishlist</WishlistAdd>
                     <TradeAdd>Trade</TradeAdd>
                     {c.type_line.includes("Legendary Creature") && (
-                      <CommanderAdd>+</CommanderAdd>
+                      <CommanderAdd>
+                        <Icon icon={star} />
+                      </CommanderAdd>
                     )}
                     <DeckAdd>Deck</DeckAdd>
                     <CollectionAdd>Collection</CollectionAdd>
@@ -51,6 +55,7 @@ const DeckAdd = styled.button``;
 const Buttons = styled.div`
   display: flex;
   justify-content: space-evenly;
+  height: 30px;
 `;
 
 const Wrapper = styled.div`
