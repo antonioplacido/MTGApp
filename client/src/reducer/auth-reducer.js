@@ -1,4 +1,4 @@
-const initialState = {
-  status: "idle",
-  error: null,
-};
+// const initialState = {
+//   status: "idle",
+//   error: null,
+// };

@@ -29,14 +29,6 @@ export default function TradePage() {
     return () => cancel();
   }, [currentPageUrl]);
 
-  function gotoNextPage() {
-    setCurrentPageUrl(nextPageUrl);
-  }
-
-  function gotoPrevPage() {
-    setCurrentPageUrl(previousPageUrl);
-  }
-
   if (loading) return "Loading...";
 
   return (

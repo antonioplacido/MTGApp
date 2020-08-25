@@ -33,31 +33,19 @@ export default function CommanderPage() {
     return () => cancel();
   }, [currentPageUrl]);
 
-  function gotoNextPage() {
-    setCurrentPageUrl(nextPageUrl);
-  }
-
-  function gotoPrevPage() {
-    setCurrentPageUrl(previousPageUrl);
-  }
-
   if (loading) return "Loading...";
 
   return (
     <Wrapper>
       <Header />
       <h1>Commanders</h1>
-      <Grid style={{ margin: "50px 50px" }}>
-        <Card cards={cards} image={images} />
-      </Grid>
+      <Card cards={cards} image={images} />
     </Wrapper>
   );
 }
 
-const Grid = styled.div`
-  display: grid;
-  grid: repeat(6, auto) / repeat(5, auto);
-  gap: 2em;
+const Wrapper = styled.div`
+  h1 {
+    padding: 20px;
+  }
 `;
-
-const Wrapper = styled.div``;

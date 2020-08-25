@@ -15,7 +15,7 @@ export default function Homepage() {
 }
 
 const Content = styled.div`
-
+  padding: 20px;
 `;
 
 const Wrapper = styled.div``;
