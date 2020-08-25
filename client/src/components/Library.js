@@ -3,6 +3,7 @@ import Header from "../components/smallComponents/Header";
 import axios from "axios";
 import Card from "./smallComponents/Card";
 import Pagination from "../components/Pagination";
+import giphy from "../assets/giphy.gif";
 
 export default function Library() {
   const [cards, setCards] = useState([]);
@@ -38,7 +39,7 @@ export default function Library() {
     setCurrentPageUrl(previousPageUrl);
   }
 
-  if (loading) return "Loading...";
+  if (loading) return <img src={giphy} />;
 
   return (
     <div>

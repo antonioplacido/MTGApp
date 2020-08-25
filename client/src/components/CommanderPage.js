@@ -48,7 +48,7 @@ export default function CommanderPage() {
   return (
     <div>
       <Header />
-      <h1>What commander are you playing?</h1>
+      <h1>i just want ben's approval</h1>
       <Grid style={{ margin: "50px 50px" }}>
         <Card cards={cards} image={images} />
       </Grid>

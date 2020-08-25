@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { SiAirtable } from "react-icons/si";
 
 export default function Card({ cards }) {
   return (
@@ -15,7 +16,7 @@ export default function Card({ cards }) {
                     <WishlistAdd>Wishlist</WishlistAdd>
                     <TradeAdd>Trade</TradeAdd>
                     {c.type_line.includes("Legendary Creature") && (
-                      <CommanderAdd>Commander</CommanderAdd>
+                      <CommanderAdd>+</CommanderAdd>
                     )}
                     <DeckAdd>Deck</DeckAdd>
                     <CollectionAdd>Collection</CollectionAdd>
@@ -38,7 +39,9 @@ const CardWrapper = styled.div`
   }
 `;
 
-const CommanderAdd = styled.button``;
+const CommanderAdd = styled.button`
+  background: ${SiAirtable};
+`;
 
 const CollectionAdd = styled.button``;
 

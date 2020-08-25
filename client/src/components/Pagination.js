@@ -10,4 +10,12 @@ export default function Pagination({ gotoNextPage, gotoPrevPage }) {
   );
 }
 
-const PageButtons = styled.div``;
+const PageButtons = styled.div`
+  display: inline-block;
+  margin-top: 50px;
+  padding-left: 20px;
+  button {
+    height: 150px;
+    width: 150px;
+  }
+`;
