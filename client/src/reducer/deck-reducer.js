@@ -9,5 +9,14 @@ const initialState = {
 };
 
 export default function deckReducer(state = initialState, action) {
-    const stateCopy = { ...state };
-    
+  const stateCopy = { ...state };
+
+  switch (action.type) {
+    case "ADD_COMMANDER":
+      return { ...state, hasCommander: true };
+    case "REMOVE_COMMANDER":
+      return { ...state, hasCommander: false };
+    default:
+      return state;
+  }
+}
