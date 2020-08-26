@@ -10,7 +10,7 @@ export default function Library() {
   const [cards, setCards] = useState([]);
   const [query, setQuery] = useState(null);
   const [currentPageUrl, setCurrentPageUrl] = useState(
-    `https://api.scryfall.com/cards/search?as=grid&order=name&q=${query}`
+    `https://api.scryfall.com/cards/search?as=grid&order=name&q=f%3Acommander`
   );
   const [nextPageUrl, setNextPageUrl] = useState();
   const [previousPageUrl, setPreviousPageUrl] = useState();
@@ -23,19 +23,36 @@ export default function Library() {
     setLoading(true);
     let cancel;
     if (query) {
-      console.log("here");
-      const baseUrl = baseUrl + query;
+      const baseUrl = `https://api.scryfall.com/cards/search?as=grid&order=name&q=${query}`;
+      axios
+        .get(baseUrl, {
+          cancelToken: new axios.CancelToken((c) => (cancel = c)),
+        })
+        .then((res) => {
+          setLoading(false);
+          setNextPageUrl(res.data.next_page);
+          setPreviousPageUrl(res.data.previous);
+          setCards(res.data.data.map((c) => c));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      axios
+        .get(baseUrl, {
+          cancelToken: new axios.CancelToken((c) => (cancel = c)),
+        })
+        .then((res) => {
+          setLoading(false);
+          setNextPageUrl(res.data.next_page);
+          setPreviousPageUrl(res.data.previous);
+          setCards(res.data.data.map((c) => c));
+        })
+        .catch((err) => {
+          console.log(err);
+          console.log(baseUrl);
+        });
     }
-    axios
-      .get(baseUrl, {
-        cancelToken: new axios.CancelToken((c) => (cancel = c)),
-      })
-      .then((res) => {
-        setLoading(false);
-        setNextPageUrl(res.data.next_page);
-        setPreviousPageUrl(res.data.previous);
-        setCards(res.data.data.map((c) => c));
-      });
 
     return () => cancel();
   }, [currentPageUrl, query]);
