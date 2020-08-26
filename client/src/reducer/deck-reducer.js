@@ -13,9 +13,24 @@ export default function deckReducer(state = initialState, action) {
 
   switch (action.type) {
     case "ADD_COMMANDER":
-      return { stateCopy, hasCommander: true };
+      stateCopy.hasCommander = true;
+      stateCopy.colorIdentity = action.card.color_identity;
+      stateCopy.commanderCard = {
+        ...stateCopy.commanderCard,
+        image: action.card.image_uris.normal,
+        id: action.card.id,
+      };
+      return stateCopy;
     case "REMOVE_COMMANDER":
-      return { stateCopy, hasCommander: false };
+      return {
+        ...state,
+        hasCommander: false,
+        colorIdentity: [],
+        commanderCard: {},
+      };
+    case "ADD_CARD":
+      stateCopy.deckSize += 1;
+      return stateCopy;
     default:
       return state;
   }

@@ -3,10 +3,11 @@ import styled from "styled-components";
 import { Icon } from "react-icons-kit";
 import { star } from "react-icons-kit/ikons/star";
 import { useSelector, useDispatch } from "react-redux";
-import { selectCommander } from "../../action";
+import { selectCommander, addCardToDeck } from "../../action";
 
 export default function Card({ cards }) {
-  const { hasCommander } = useSelector((state) => state.deck);
+  const state = useSelector((state) => state.deck);
+  console.log(state);
   const dispatch = useDispatch();
   return (
     <Wrapper>
@@ -20,12 +21,26 @@ export default function Card({ cards }) {
                   <Buttons>
                     <WishlistAdd>Wishlist</WishlistAdd>
                     <TradeAdd>Trade</TradeAdd>
-                    {c.type_line.includes("Legendary Creature") && (
-                      <CommanderAdd onClick={() => dispatch(selectCommander())}>
-                        <Icon icon={star} />
-                      </CommanderAdd>
-                    )}
-                    <DeckAdd>Deck</DeckAdd>
+                    {!state.hasCommander &&
+                      c.type_line.includes("Legendary Creature") && (
+                        <CommanderAdd
+                          onClick={() => dispatch(selectCommander(c))}
+                        >
+                          <Icon icon={star} />
+                        </CommanderAdd>
+                      )}
+                    {state.hasCommander &&
+                      c.type_line.includes("Legendary Creature") && (
+                        <CommanderAdd
+                          disabled
+                          onClick={() => dispatch(selectCommander(c))}
+                        >
+                          <Icon icon={star} />
+                        </CommanderAdd>
+                      )}
+                    <DeckAdd onClick={() => dispatch(addCardToDeck(c))}>
+                      Deck
+                    </DeckAdd>
                     <CollectionAdd>Collection</CollectionAdd>
                   </Buttons>
                 </div>

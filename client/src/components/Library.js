@@ -8,20 +8,26 @@ import giphy from "../assets/giphy.gif";
 
 export default function Library() {
   const [cards, setCards] = useState([]);
+  const [query, setQuery] = useState(null);
   const [currentPageUrl, setCurrentPageUrl] = useState(
-    "https://api.scryfall.com/cards/search?as=grid&order=name&q=legal%3Acommander"
+    `https://api.scryfall.com/cards/search?as=grid&order=name&q=${query}`
   );
   const [nextPageUrl, setNextPageUrl] = useState();
   const [previousPageUrl, setPreviousPageUrl] = useState();
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [query, setQuery] = useState();
+  let baseUrl =
+    "https://api.scryfall.com/cards/search?as=grid&order=name&q=f%3Acommander";
 
   useEffect(() => {
     setLoading(true);
     let cancel;
+    if (query) {
+      console.log("here");
+      const baseUrl = baseUrl + query;
+    }
     axios
-      .get(currentPageUrl, {
+      .get(baseUrl, {
         cancelToken: new axios.CancelToken((c) => (cancel = c)),
       })
       .then((res) => {

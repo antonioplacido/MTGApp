@@ -1,9 +1,9 @@
-export const selectCommander = () => {
-  return { type: "ADD_COMMANDER" };
+export const selectCommander = (card) => {
+  return { type: "ADD_COMMANDER", card };
 };
 
-export const removeCommander = (id) => {
-  return { type: "REMOVE_COMMANDER", id };
+export const removeCommander = () => {
+  return { type: "REMOVE_COMMANDER" };
 };
 
 export const addCardToDeck = (card, id) => {
