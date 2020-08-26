@@ -2,8 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { Icon } from "react-icons-kit";
 import { star } from "react-icons-kit/ikons/star";
+import { useSelector, useDispatch } from "react-redux";
+import { selectCommander } from "../../action";
 
 export default function Card({ cards }) {
+  const { hasCommander } = useSelector((state) => state.deck);
+  const dispatch = useDispatch();
   return (
     <Wrapper>
       {cards.map((c) => {
@@ -17,7 +21,7 @@ export default function Card({ cards }) {
                     <WishlistAdd>Wishlist</WishlistAdd>
                     <TradeAdd>Trade</TradeAdd>
                     {c.type_line.includes("Legendary Creature") && (
-                      <CommanderAdd>
+                      <CommanderAdd onClick={() => dispatch(selectCommander)}>
                         <Icon icon={star} />
                       </CommanderAdd>
                     )}

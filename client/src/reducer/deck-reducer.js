@@ -13,9 +13,9 @@ export default function deckReducer(state = initialState, action) {
 
   switch (action.type) {
     case "ADD_COMMANDER":
-      return { ...state, hasCommander: true };
+      return { stateCopy, hasCommander: true };
     case "REMOVE_COMMANDER":
-      return { ...state, hasCommander: false };
+      return { stateCopy, hasCommander: false };
     default:
       return state;
   }

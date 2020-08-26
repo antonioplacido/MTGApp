@@ -1,4 +1,4 @@
-export const selectCommander = (card, id) => {
+export const selectCommander = (card) => {
   return { type: "ADD_COMMANDER", card };
 };
 
@@ -12,10 +12,6 @@ export const addCardToDeck = (card, id) => {
 
 export const removeCardFromDeck = (id) => {
   return { type: "REMOVE_CARD", id };
-};
-
-export const clearDeck = (item, id) => {
-  return { type: "ADD_ITEM", item, id };
 };
 
 export const addCardWishList = (card, id) => {

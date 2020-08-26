@@ -7,7 +7,9 @@ export default function loggedReducer(state = initialState, action) {
 
   switch (action.type) {
     case "SIGN_IN":
-      return !state;
+      return { isLoggedIn: true };
+    case "SIGN_OUT":
+      return { isLoggedIn: false };
     default:
       return state;
   }
