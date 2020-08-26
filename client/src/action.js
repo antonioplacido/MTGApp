@@ -1,5 +1,5 @@
-export const selectCommander = (card) => {
-  return { type: "ADD_COMMANDER", card };
+export const selectCommander = () => {
+  return { type: "ADD_COMMANDER" };
 };
 
 export const removeCommander = (id) => {

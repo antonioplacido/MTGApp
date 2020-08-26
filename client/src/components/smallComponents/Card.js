@@ -21,7 +21,7 @@ export default function Card({ cards }) {
                     <WishlistAdd>Wishlist</WishlistAdd>
                     <TradeAdd>Trade</TradeAdd>
                     {c.type_line.includes("Legendary Creature") && (
-                      <CommanderAdd onClick={() => dispatch(selectCommander)}>
+                      <CommanderAdd onClick={() => dispatch(selectCommander())}>
                         <Icon icon={star} />
                       </CommanderAdd>
                     )}
