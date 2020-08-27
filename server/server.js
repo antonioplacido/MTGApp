@@ -8,7 +8,7 @@ require("isomorphic-fetch");
 const app = express();
 app.use(helmet());
 app.use(morgan("dev"));
-const port = 3000;
+const port = 8000;
 
 //Below fetch gets all playable commander cards
 app.get("/commandercards", (req, res) => {
