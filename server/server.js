@@ -11,16 +11,8 @@ const { handleCreateUser } = require("./handlers");
 const app = express();
 app.use(helmet());
 app.use(morgan("dev"));
-const port = 000;
-
-//Below fetch gets all playable commander cards
-app.get("/commandercards", (req, res) => {
-  fetch("https://api.scryfall.com/cards/search?q=legal%3Acommander")
-    .then((res) => res.json())
-    .then((data) => console.log(data));
-  res.send("This brings ESPER instants");
-  console.log(data);
-});
+app.use(bodyParser.json());
+const port = 8000;
 
 app.post("/user", handleCreateUser);
 
