@@ -9,6 +9,12 @@ export default function Card({ cards }) {
   const state = useSelector((state) => state.deck);
   console.log(state);
   const dispatch = useDispatch();
+  const creatureConditions = [
+    "Legendary Creature",
+    "Legendary Artifact Creature",
+    "Legendary Enchantment Creature",
+  ];
+
   return (
     <Wrapper>
       {cards.map((c) => {
@@ -22,7 +28,9 @@ export default function Card({ cards }) {
                     <WishlistAdd>Wishlist</WishlistAdd>
                     <TradeAdd>Trade</TradeAdd>
                     {!state.hasCommander &&
-                      c.type_line.includes("Legendary Creature") && (
+                      creatureConditions.some((ele) =>
+                        c.type_line.includes(ele)
+                      ) && (
                         <CommanderAdd
                           onClick={() => dispatch(selectCommander(c))}
                         >
@@ -30,7 +38,9 @@ export default function Card({ cards }) {
                         </CommanderAdd>
                       )}
                     {state.hasCommander &&
-                      c.type_line.includes("Legendary Creature") && (
+                      creatureConditions.some((ele) =>
+                        c.type_line.includes(ele)
+                      ) && (
                         <CommanderAdd
                           disabled
                           onClick={() => dispatch(selectCommander(c))}

@@ -66,9 +66,7 @@ export default function Library() {
   }
 
   if (loading)
-    return (
-      <img src={giphy} height="1250vh" width="3000vw" alt="Liliana Vess" />
-    );
+    return <img src={giphy} height="800vh" width="2000vw" alt="Liliana Vess" />;
 
   const updateSearch = (e) => {
     setSearch(e.target.value);
@@ -82,7 +80,7 @@ export default function Library() {
   };
 
   return (
-    <div>
+    <Wrapper>
       <Header />
       <SearchBar>
         <h1> Library</h1>
@@ -103,9 +101,13 @@ export default function Library() {
         gotoNextPage={nextPageUrl ? gotoNextPage : null}
         gotoPrevPage={previousPageUrl ? gotoPrevPage : null}
       />
-    </div>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  justify-content: center;
+`;
 
 const SearchBar = styled.div`
   padding: 20px;
