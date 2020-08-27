@@ -35,7 +35,12 @@ export default function deckReducer(state = initialState, action) {
       };
     case "ADD_CARD":
       stateCopy.deckSize += 1;
-      stateCopy.the99.push(action.card.id);
+      stateCopy.the99.push({
+        id: action.card.id,
+        image: action.card.image_uris.normal,
+        manacost: action.card.mana_cost,
+        colorIdentity: action.card.color_identity,
+      });
       return stateCopy;
     case "REMOVE_CARD":
       stateCopy.deckSize -= 1;

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Icon } from "react-icons-kit";
 import { star } from "react-icons-kit/ikons/star";
+import { trash2 } from "react-icons-kit/feather/trash2";
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectCommander,
@@ -57,16 +58,17 @@ export default function Card({ cards }) {
                         c.type_line.includes(ele)
                       ) && (
                         <CommanderAdd
-                          disabled
-                          onClick={() => dispatch(selectCommander(c))}
+                          onClick={() => dispatch(removeCommander(c))}
                         >
-                          <Icon icon={star} />
+                          <Icon icon={trash2} />
                         </CommanderAdd>
                       )}
                     <DeckAdd onClick={() => dispatch(addCardToDeck(c))}>
                       Deck
                     </DeckAdd>
-                    <CollectionAdd onClick={() => dispatch(addCardToDeck(c))}>
+                    <CollectionAdd
+                      onClick={() => dispatch(addCardCollection(c))}
+                    >
                       Collection
                     </CollectionAdd>
                   </Buttons>
@@ -87,6 +89,8 @@ const CardWrapper = styled.div`
     height: 400px;
   }
 `;
+
+const CommanderRemove = styled.button``;
 
 const CommanderAdd = styled.button``;
 
