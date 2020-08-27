@@ -16,28 +16,28 @@ export const removeCardFromDeck = (card) => {
   return { type: "REMOVE_CARD", card };
 };
 
-export const addCardWishList = (card, id) => {
-  return { type: "ADD_CARD_WISHLIST", card, id };
+export const addCardWishList = (card) => {
+  return { type: "ADD_CARD_WISHLIST", card };
 };
 
-export const removeCardWishList = (id) => {
-  return { type: "REMOVE_CARD_WISHLIST", id };
+export const removeCardWishList = (card) => {
+  return { type: "REMOVE_CARD_WISHLIST", card };
 };
 
-export const addCardTrade = (card, id) => {
-  return { type: "ADD_CARD_TRADE", card, id };
+export const addCardTrade = (card) => {
+  return { type: "ADD_CARD_TRADE", card };
 };
 
-export const removeCardTrade = (id) => {
-  return { type: "REMOVE_CARD_TRADE", id };
+export const removeCardTrade = (card) => {
+  return { type: "REMOVE_CARD_TRADE", card };
 };
 
-export const increaseCardCount = (id) => {
-  return { type: "INCREMENT_CARD_QUANTITY", id };
+export const increaseCardCount = (card) => {
+  return { type: "INCREMENT_CARD_QUANTITY", card };
 };
 
-export const decreaseCardCount = (id) => {
-  return { type: "DECREASE_CARD_QUANTITY", id };
+export const decreaseCardCount = (card) => {
+  return { type: "DECREASE_CARD_QUANTITY", card };
 };
 
 export const clearDeck = () => {

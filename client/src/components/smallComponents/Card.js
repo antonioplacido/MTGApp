@@ -5,8 +5,14 @@ import { star } from "react-icons-kit/ikons/star";
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectCommander,
+  removeCommander,
   addCardToDeck,
   removeCardFromDeck,
+  addCardTrade,
+  removeCardTrade,
+  addCardWishList,
+  removeCardWishList,
+  clearDeck,
 } from "../../action";
 
 export default function Card({ cards }) {
@@ -28,12 +34,12 @@ export default function Card({ cards }) {
               {c.image_uris && (
                 <div key={c}>
                   <Buttons>
-                    <WishlistAdd
-                      onClick={() => dispatch(removeCardFromDeck(c))}
-                    >
+                    <WishlistAdd onClick={() => dispatch(addCardWishList(c))}>
                       Wishlist
                     </WishlistAdd>
-                    <TradeAdd>Trade</TradeAdd>
+                    <TradeAdd onClick={() => dispatch(addCardTrade(c))}>
+                      Trade
+                    </TradeAdd>
                     {!state.hasCommander &&
                       creatureConditions.some((ele) =>
                         c.type_line.includes(ele)
