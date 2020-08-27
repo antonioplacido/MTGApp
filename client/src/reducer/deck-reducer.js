@@ -62,6 +62,15 @@ export default function deckReducer(state = initialState, action) {
         stateCopy.wishList.splice(wishIndex, 1);
       }
       return stateCopy;
+    case "ADD_CARD_COLLECTION":
+      stateCopy.binder.push(action.card.id);
+      return stateCopy;
+    case "REMOVE_CARD_COLLECTION":
+      const binderIndex = stateCopy.binder.indexOf(action.card.id);
+      if (binderIndex > -1) {
+        stateCopy.binder.splice(binderIndex, 1);
+      }
+      return stateCopy;
     case "CLEAR_DECK":
       return {
         hasCommander: false,

@@ -13,6 +13,8 @@ import {
   addCardWishList,
   removeCardWishList,
   clearDeck,
+  addCardCollection,
+  removeCardCollection,
 } from "../../action";
 
 export default function Card({ cards }) {
@@ -64,7 +66,9 @@ export default function Card({ cards }) {
                     <DeckAdd onClick={() => dispatch(addCardToDeck(c))}>
                       Deck
                     </DeckAdd>
-                    <CollectionAdd>Collection</CollectionAdd>
+                    <CollectionAdd onClick={() => dispatch(addCardToDeck(c))}>
+                      Collection
+                    </CollectionAdd>
                   </Buttons>
                 </div>
               )}

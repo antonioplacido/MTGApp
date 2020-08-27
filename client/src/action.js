@@ -10,8 +10,6 @@ export const addCardToDeck = (card, id) => {
   return { type: "ADD_CARD", card, id };
 };
 
-// temporarily assigned to wishlist button for testing
-
 export const removeCardFromDeck = (card) => {
   return { type: "REMOVE_CARD", card };
 };
@@ -38,6 +36,14 @@ export const increaseCardCount = (card) => {
 
 export const decreaseCardCount = (card) => {
   return { type: "DECREASE_CARD_QUANTITY", card };
+};
+
+export const addCardCollection = (card) => {
+  return { type: "ADD_CARD_COLLECTION", card };
+};
+
+export const removeCardCollection = (card) => {
+  return { type: "REMOVE_CARD_COLLECTION", card };
 };
 
 export const clearDeck = () => {

@@ -3,6 +3,7 @@ import Header from "../components/smallComponents/Header";
 import axios from "axios";
 import Card from "./smallComponents/Card";
 import styled from "styled-components";
+import giphy from "../assets/giphy.gif";
 
 export default function CommanderPage() {
   // setting my cards on render
@@ -33,7 +34,8 @@ export default function CommanderPage() {
     return () => cancel();
   }, [currentPageUrl]);
 
-  if (loading) return "Loading...";
+  if (loading)
+    return <img src={giphy} height="800vh" width="2000vw" alt="Liliana Vess" />;
 
   return (
     <Wrapper>
