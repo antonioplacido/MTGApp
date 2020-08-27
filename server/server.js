@@ -2,13 +2,16 @@ const express = require("express");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const scryfall = require("scryfall-client");
+const bodyParser = require("body-parser");
 require("es6-promise").polyfill();
 require("isomorphic-fetch");
+
+const { handleCreateUser } = require("./handlers");
 
 const app = express();
 app.use(helmet());
 app.use(morgan("dev"));
-const port = 8000;
+const port = 000;
 
 //Below fetch gets all playable commander cards
 app.get("/commandercards", (req, res) => {
@@ -18,6 +21,8 @@ app.get("/commandercards", (req, res) => {
   res.send("This brings ESPER instants");
   console.log(data);
 });
+
+app.post("/user", handleCreateUser);
 
 const handleFourOhFour = (req, res) => {
   res
