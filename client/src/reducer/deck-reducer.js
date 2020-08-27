@@ -30,8 +30,17 @@ export default function deckReducer(state = initialState, action) {
       };
     case "ADD_CARD":
       stateCopy.deckSize += 1;
+      stateCopy.the99.push(action.card.id);
       return stateCopy;
+    case "REMOVE_CARD":
+      stateCopy.deckSize -= 1;
+      const index = stateCopy.the99.indexOf(action.card.id);
+      if (index > -1) {
+        stateCopy.the99.splice(index, 1);
+      }
+      return stateCopy;
+
     default:
-      return state;
+      return stateCopy;
   }
 }

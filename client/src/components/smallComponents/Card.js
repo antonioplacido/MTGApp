@@ -3,11 +3,14 @@ import styled from "styled-components";
 import { Icon } from "react-icons-kit";
 import { star } from "react-icons-kit/ikons/star";
 import { useSelector, useDispatch } from "react-redux";
-import { selectCommander, addCardToDeck } from "../../action";
+import {
+  selectCommander,
+  addCardToDeck,
+  removeCardFromDeck,
+} from "../../action";
 
 export default function Card({ cards }) {
   const state = useSelector((state) => state.deck);
-  console.log(state);
   const dispatch = useDispatch();
   const creatureConditions = [
     "Legendary Creature",
@@ -25,7 +28,11 @@ export default function Card({ cards }) {
               {c.image_uris && (
                 <div key={c}>
                   <Buttons>
-                    <WishlistAdd>Wishlist</WishlistAdd>
+                    <WishlistAdd
+                      onClick={() => dispatch(removeCardFromDeck(c))}
+                    >
+                      Wishlist
+                    </WishlistAdd>
                     <TradeAdd>Trade</TradeAdd>
                     {!state.hasCommander &&
                       creatureConditions.some((ele) =>

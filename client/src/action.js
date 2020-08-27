@@ -10,8 +10,10 @@ export const addCardToDeck = (card, id) => {
   return { type: "ADD_CARD", card, id };
 };
 
-export const removeCardFromDeck = (id) => {
-  return { type: "REMOVE_CARD", id };
+// temporarily assigned to wishlist button for testing
+
+export const removeCardFromDeck = (card) => {
+  return { type: "REMOVE_CARD", card };
 };
 
 export const addCardWishList = (card, id) => {
