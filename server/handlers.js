@@ -23,4 +23,18 @@ async function handleCreateUser(req, res) {
   }
 }
 
-module.exports = { handleCreateUser };
+async function handleSaveDeck(req, res) {
+  try {
+    const client = await MongoClient(MONGO_URI, { useUnifiedTopology: true });
+    await client.connect();
+    const db = client.db("tolarian");
+    const addDecks = await db.collection("decks").insertOne(req.body);
+    assert.equal(1, addDecks.insertedCount);
+    client.close();
+    res.status(201).json({ status: 201, data: req.body });
+  } catch ({ message }) {
+    res.status(500).json({ status: 500, message });
+  }
+}
+
+module.exports = { handleCreateUser, handleSaveDeck };

@@ -6,11 +6,9 @@ import giphy from "../assets/giphy.gif";
 
 export default function TradePage() {
   const [cards, setCards] = useState([]);
-  const [currentPageUrl, setCurrentPageUrl] = useState(
+  const [currentPageUrl] = useState(
     "https://api.scryfall.com/cards/search?as=grid&order=name&q=legal%3Acommander"
   );
-  const [nextPageUrl, setNextPageUrl] = useState();
-  const [previousPageUrl, setPreviousPageUrl] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -22,8 +20,6 @@ export default function TradePage() {
       })
       .then((res) => {
         setLoading(false);
-        setNextPageUrl(res.data.next_page);
-        setPreviousPageUrl(res.data.previous);
         setCards(res.data.data.map((c) => c.name));
       });
 

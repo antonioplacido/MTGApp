@@ -3,7 +3,7 @@ const initialState = {
 };
 
 export default function loggedReducer(state = initialState, action) {
-  const stateCopy = { ...state };
+  // const stateCopy = { ...state };
 
   switch (action.type) {
     case "SIGN_IN":

@@ -25,6 +25,8 @@ export default function Card({ cards }) {
     "Legendary Creature",
     "Legendary Artifact Creature",
     "Legendary Enchantment Creature",
+    "Legendary Planeswalker",
+    "Planeswalker",
   ];
 
   return (
@@ -63,9 +65,13 @@ export default function Card({ cards }) {
                           <Icon icon={trash2} />
                         </CommanderAdd>
                       )}
-                    <DeckAdd onClick={() => dispatch(addCardToDeck(c))}>
-                      Deck
-                    </DeckAdd>
+                    {c.color_identity.every((e) =>
+                      state.colorIdentity.includes(e)
+                    ) && (
+                      <DeckAdd onClick={() => dispatch(addCardToDeck(c))}>
+                        Deck
+                      </DeckAdd>
+                    )}
                     <CollectionAdd
                       onClick={() => dispatch(addCardCollection(c))}
                     >
@@ -89,8 +95,6 @@ const CardWrapper = styled.div`
     height: 400px;
   }
 `;
-
-const CommanderRemove = styled.button``;
 
 const CommanderAdd = styled.button``;
 

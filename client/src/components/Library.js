@@ -9,11 +9,10 @@ import giphy from "../assets/giphy.gif";
 export default function Library() {
   const [cards, setCards] = useState([]);
   const [query, setQuery] = useState(null);
-  const [currentPageUrl, setCurrentPageUrl] = useState(
+  const [currentPageUrl] = useState(
     `https://api.scryfall.com/cards/search?as=grid&order=name&q=f%3Acommander`
   );
-  const [nextPageUrl, setNextPageUrl] = useState();
-  const [previousPageUrl, setPreviousPageUrl] = useState();
+
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   let baseUrl =
@@ -30,8 +29,6 @@ export default function Library() {
         })
         .then((res) => {
           setLoading(false);
-          setNextPageUrl(res.data.next_page);
-          setPreviousPageUrl(res.data.previous);
           setCards(res.data.data.map((c) => c));
         })
         .catch((err) => {
@@ -44,8 +41,6 @@ export default function Library() {
         })
         .then((res) => {
           setLoading(false);
-          setNextPageUrl(res.data.next_page);
-          setPreviousPageUrl(res.data.previous);
           setCards(res.data.data.map((c) => c));
         })
         .catch((err) => {
@@ -56,14 +51,6 @@ export default function Library() {
 
     return () => cancel();
   }, [currentPageUrl, query]);
-
-  function gotoNextPage() {
-    setCurrentPageUrl(nextPageUrl);
-  }
-
-  function gotoPrevPage() {
-    setCurrentPageUrl(previousPageUrl);
-  }
 
   if (loading)
     return <img src={giphy} height="800vh" width="2000vw" alt="Liliana Vess" />;
@@ -97,10 +84,6 @@ export default function Library() {
         </form>
       </SearchBar>
       <Card cards={cards} />
-      <Pagination
-        gotoNextPage={nextPageUrl ? gotoNextPage : null}
-        gotoPrevPage={previousPageUrl ? gotoPrevPage : null}
-      />
     </Wrapper>
   );
 }
@@ -111,9 +94,11 @@ const Wrapper = styled.div`
 
 const SearchBar = styled.div`
   padding: 20px;
+  text-align: center;
   input {
     height: 5vh;
     width: 600px;
+    font-size: 30px;
   }
   button {
     height: 5vh;

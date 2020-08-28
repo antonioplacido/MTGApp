@@ -4,7 +4,7 @@ const initialState = {
 };
 
 export default function authReducer(state = initialState, action) {
-  const stateCopy = { ...state };
+  // const stateCopy = { ...state };
   switch (action.type) {
     default:
       return state;
