@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Header from "../components/smallComponents/Header";
 import { useSelector, useDispatch } from "react-redux";
-import { removeCardFromDeck, clearDeck } from "../../src/action";
+import { removeCardFromDeck, clearDeck, saveDeck } from "../../src/action";
 import { Icon } from "react-icons-kit";
 import { trash2 } from "react-icons-kit/feather/trash2";
 
@@ -24,6 +24,9 @@ export default function CreatePage() {
             <OmegaDelete onClick={() => dispatch(clearDeck())}>
               Clear Deck
             </OmegaDelete>
+            <OmegaSave onClick={() => dispatch(saveDeck())}>
+              Save Deck
+            </OmegaSave>
           </LeftSide>
           <RightSide>
             <Subs>
@@ -82,7 +85,7 @@ const LeftSide = styled.div`
 `;
 
 const RightSide = styled.div`
-  padding: 60px;
+  padding: 40px;
 `;
 
 const DeckDrop = styled.div`
@@ -93,8 +96,10 @@ const RemoveCard = styled.button``;
 
 const OmegaDelete = styled.button``;
 
+const OmegaSave = styled.button``;
+
 const Subs = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   padding-left: 60px;
 `;

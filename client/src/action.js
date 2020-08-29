@@ -49,3 +49,7 @@ export const removeCardCollection = (card) => {
 export const clearDeck = () => {
   return { type: "CLEAR_DECK" };
 };
+
+export const saveDeck = () => {
+  return { type: "SAVE_DECK" };
+};

@@ -9,7 +9,6 @@ const initialState = {
   binder: [],
   trade: [],
   wishList: [],
-  WIP: [],
   decks: [],
 };
 
@@ -91,7 +90,17 @@ export default function deckReducer(state = initialState, action) {
         the99: [],
         deckSize: 1,
         deckCompleted: false,
+        decks: stateCopy.decks,
       };
+    case "SAVE_DECK":
+      stateCopy.decks.push({
+        commander: stateCopy.commanderCard,
+        deck: stateCopy.the99,
+        completed: stateCopy.deckCompleted,
+        colorID: stateCopy.color_identity,
+      });
+      return stateCopy;
+
     default:
       return stateCopy;
   }
