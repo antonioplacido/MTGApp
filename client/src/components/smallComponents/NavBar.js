@@ -8,7 +8,7 @@ export default function NavBar() {
       <NavLink to="/home">Home</NavLink>
       <NavLink to="/commander">Commanders</NavLink>
       <NavLink to="/library">Library</NavLink>
-      <NavLink to="/create">Create Deck</NavLink>
+      <NavLink to="/create">Deck</NavLink>
       <NavLink to="/trade">Trade</NavLink>
       <NavLink to="/wishlist">Wishlist</NavLink>
       <NavLink to="/stats">Stats</NavLink>

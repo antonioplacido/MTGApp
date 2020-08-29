@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Header from "../components/smallComponents/Header";
 import axios from "axios";
 import Card from "./smallComponents/Card";
-import Pagination from "../components/Pagination";
 import giphy from "../assets/giphy.gif";
 
 export default function Library() {
@@ -96,11 +95,12 @@ const SearchBar = styled.div`
   padding: 20px;
   text-align: center;
   input {
-    height: 5vh;
+    height: 6vh;
     width: 600px;
     font-size: 30px;
   }
   button {
-    height: 5vh;
+    height: 6vh;
+    font-size: 30px;
   }
 `;

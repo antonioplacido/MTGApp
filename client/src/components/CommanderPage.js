@@ -95,13 +95,14 @@ const Wrapper = styled.div`
 const SearchBar = styled.div`
   padding: 20px;
   text-align: center;
-
+  align-items: center;
   input {
-    height: 5vh;
+    height: 6vh;
     width: 600px;
     font-size: 30px;
   }
   button {
-    height: 5vh;
+    height: 6vh;
+    font-size: 30px;
   }
 `;

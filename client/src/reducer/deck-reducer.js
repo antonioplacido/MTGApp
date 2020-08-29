@@ -24,6 +24,7 @@ export default function deckReducer(state = initialState, action) {
         ...stateCopy.commanderCard,
         image: action.card.image_uris.normal,
         id: action.card.id,
+        name: action.card.name,
       };
       return stateCopy;
     case "REMOVE_COMMANDER":
@@ -32,6 +33,8 @@ export default function deckReducer(state = initialState, action) {
         hasCommander: false,
         colorIdentity: [],
         commanderCard: {},
+        the99: [],
+        deckSize: 1,
       };
     case "ADD_CARD":
       stateCopy.deckSize += 1;
@@ -40,11 +43,14 @@ export default function deckReducer(state = initialState, action) {
         image: action.card.image_uris.normal,
         manacost: action.card.mana_cost,
         colorIdentity: action.card.color_identity,
+        cardType: action.card.type_line,
+        cardName: action.card.name,
+        cmc: action.card.cmc,
       });
       return stateCopy;
     case "REMOVE_CARD":
       stateCopy.deckSize -= 1;
-      const index = stateCopy.the99.indexOf(action.card.id);
+      const index = stateCopy.the99.indexOf(action.card);
       if (index > -1) {
         stateCopy.the99.splice(index, 1);
       }

@@ -8,14 +8,9 @@ import {
   selectCommander,
   removeCommander,
   addCardToDeck,
-  removeCardFromDeck,
   addCardTrade,
-  removeCardTrade,
   addCardWishList,
-  removeCardWishList,
-  clearDeck,
   addCardCollection,
-  removeCardCollection,
 } from "../../action";
 
 export default function Card({ cards }) {
