@@ -14,8 +14,8 @@ import { list } from "react-icons-kit/feather/list";
 import { trash2 } from "react-icons-kit/feather/trash2";
 
 export default function CreatePage() {
+  // this page is rendering the DECK page
   const state = useSelector((state) => state.deck);
-  console.log(state);
   const dispatch = useDispatch();
   return (
     <Wrapper>
@@ -75,6 +75,9 @@ export default function CreatePage() {
 const Wrapper = styled.div`
   img {
     height: 400px;
+  }
+  h1 {
+    padding: 20px;
   }
 `;
 

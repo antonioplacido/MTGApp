@@ -1,39 +1,54 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/smallComponents/Header";
-import axios from "axios";
-import Card from "./smallComponents/Card";
-import giphy from "../assets/giphy.gif";
+import { useSelector, useDispatch } from "react-redux";
+import styled from "styled-components";
+import { Icon } from "react-icons-kit";
+import { trash2 } from "react-icons-kit/feather/trash2";
+import { removeCardTrade } from "../../src/action";
 
 export default function TradePage() {
-  const [cards, setCards] = useState([]);
-  const [currentPageUrl] = useState(
-    "https://api.scryfall.com/cards/search?as=grid&order=name&q=legal%3Acommander"
-  );
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(true);
-    let cancel;
-    axios
-      .get(currentPageUrl, {
-        cancelToken: new axios.CancelToken((c) => (cancel = c)),
-      })
-      .then((res) => {
-        setLoading(false);
-        setCards(res.data.data.map((c) => c.name));
-      });
-
-    return () => cancel();
-  }, [currentPageUrl]);
-
-  if (loading)
-    return <img src={giphy} height="800vh" width="2000vw" alt="Liliana Vess" />;
-
+  // currently named "Collection" in our app
+  const state = useSelector((state) => state.deck);
+  console.log(state);
+  const dispatch = useDispatch();
   return (
-    <div>
+    <Wrapper>
       <Header />
-      <div>display the trade page</div>
-      <Card cards={cards} />
-    </div>
+      <h1> Collection</h1>
+      <Collection>
+        {state.trade.map((c) => {
+          return (
+            <>
+              {c.image && (
+                <div>
+                  <img src={c.image} />
+                  <RemoveCard onClick={() => dispatch(removeCardTrade(c))}>
+                    <Icon icon={trash2} />
+                  </RemoveCard>
+                </div>
+              )}
+            </>
+          );
+        })}
+      </Collection>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  justify-content: center;
+  img {
+    height: 400px;
+  }
+  h1 {
+    padding: 20px;
+    text-align: center;
+    align-items: center;
+  }
+`;
+
+const Collection = styled.div`
+  display: flex;
+`;
+
+const RemoveCard = styled.button``;
