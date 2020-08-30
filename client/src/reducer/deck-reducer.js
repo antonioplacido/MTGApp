@@ -55,19 +55,35 @@ export default function deckReducer(state = initialState, action) {
       }
       return stateCopy;
     case "ADD_CARD_TRADE":
-      stateCopy.trade.push(action.card.id);
+      stateCopy.trade.push({
+        id: action.card.id,
+        image: action.card.image_uris.normal,
+        manacost: action.card.mana_cost,
+        colorIdentity: action.card.color_identity,
+        cardType: action.card.type_line,
+        cardName: action.card.name,
+        cmc: action.card.cmc,
+      });
       return stateCopy;
     case "REMOVE_CARD_TRADE":
-      const tradeIndex = stateCopy.trade.indexOf(action.card.id);
+      const tradeIndex = stateCopy.trade.indexOf(action.card);
       if (tradeIndex > -1) {
         stateCopy.trade.splice(tradeIndex, 1);
       }
       return stateCopy;
     case "ADD_CARD_WISHLIST":
-      stateCopy.wishList.push(action.card.id);
+      stateCopy.wishList.push({
+        id: action.card.id,
+        image: action.card.image_uris.normal,
+        manacost: action.card.mana_cost,
+        colorIdentity: action.card.color_identity,
+        cardType: action.card.type_line,
+        cardName: action.card.name,
+        cmc: action.card.cmc,
+      });
       return stateCopy;
     case "REMOVE_CARD_WISHLIST":
-      const wishIndex = stateCopy.wishList.indexOf(action.card.id);
+      const wishIndex = stateCopy.wishList.indexOf(action.card);
       if (wishIndex > -1) {
         stateCopy.wishList.splice(wishIndex, 1);
       }
@@ -76,7 +92,7 @@ export default function deckReducer(state = initialState, action) {
       stateCopy.binder.push(action.card.id);
       return stateCopy;
     case "REMOVE_CARD_COLLECTION":
-      const binderIndex = stateCopy.binder.indexOf(action.card.id);
+      const binderIndex = stateCopy.binder.indexOf(action.card);
       if (binderIndex > -1) {
         stateCopy.binder.splice(binderIndex, 1);
       }
@@ -99,7 +115,16 @@ export default function deckReducer(state = initialState, action) {
         completed: stateCopy.deckCompleted,
         colorID: stateCopy.color_identity,
       });
-      return stateCopy;
+    case "ADD_CARD_WISHLIST_DECK":
+      stateCopy.wishList.push({
+        id: action.card.id,
+        image: action.card.image,
+        manacost: action.card.manacost,
+        colorIdentity: action.card.colorIdentity,
+        cardType: action.card.cardType,
+        cardName: action.card.cardName,
+        cmc: action.card.cmc,
+      });
 
     default:
       return stateCopy;

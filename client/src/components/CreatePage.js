@@ -2,8 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import Header from "../components/smallComponents/Header";
 import { useSelector, useDispatch } from "react-redux";
-import { removeCardFromDeck, clearDeck, saveDeck } from "../../src/action";
+import {
+  removeCardFromDeck,
+  clearDeck,
+  saveDeck,
+  addCardWishListFromDeck,
+} from "../../src/action";
 import { Icon } from "react-icons-kit";
+import { save } from "react-icons-kit/feather/save";
+import { list } from "react-icons-kit/feather/list";
 import { trash2 } from "react-icons-kit/feather/trash2";
 
 export default function CreatePage() {
@@ -25,7 +32,7 @@ export default function CreatePage() {
               Clear Deck
             </OmegaDelete>
             <OmegaSave onClick={() => dispatch(saveDeck())}>
-              Save Deck
+              <Icon icon={save} />
             </OmegaSave>
           </LeftSide>
           <RightSide>
@@ -33,7 +40,7 @@ export default function CreatePage() {
               <div>Name</div>
               <div>Type</div>
               <div>CMC</div>
-              <div>Remove?</div>
+              <div>Remove/Wishlist</div>
             </Subs>
             {state.the99.map((c) => {
               return (
@@ -48,6 +55,11 @@ export default function CreatePage() {
                       >
                         <Icon icon={trash2} />
                       </RemoveCard>
+                      <WishlistAdd
+                        onClick={() => dispatch(addCardWishListFromDeck(c))}
+                      >
+                        <Icon icon={list} />
+                      </WishlistAdd>
                     </CardName>
                   )}
                 </>
@@ -61,7 +73,6 @@ export default function CreatePage() {
 }
 
 const Wrapper = styled.div`
-  padding: 20px;
   img {
     height: 400px;
   }
@@ -93,6 +104,8 @@ const DeckDrop = styled.div`
 `;
 
 const RemoveCard = styled.button``;
+
+const WishlistAdd = styled.button``;
 
 const OmegaDelete = styled.button``;
 
