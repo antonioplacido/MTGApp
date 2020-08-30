@@ -115,6 +115,12 @@ export default function deckReducer(state = initialState, action) {
         completed: stateCopy.deckCompleted,
         colorID: stateCopy.color_identity,
       });
+      stateCopy.hasCommander = false;
+      stateCopy.colorIdentity = [];
+      stateCopy.commanderCard = {};
+      stateCopy.the99 = [];
+      stateCopy.deckSize = 1;
+      return stateCopy;
     case "ADD_CARD_WISHLIST_DECK":
       stateCopy.wishList.push({
         id: action.card.id,

@@ -37,9 +37,9 @@ export default function Card({ cards }) {
                     <WishlistAdd onClick={() => dispatch(addCardWishList(c))}>
                       Wishlist
                     </WishlistAdd>
-                    <TradeAdd onClick={() => dispatch(addCardTrade(c))}>
+                    {/* <TradeAdd onClick={() => dispatch(addCardTrade(c))}>
                       Trade
-                    </TradeAdd>
+                    </TradeAdd> */}
                     {!state.hasCommander &&
                       creatureConditions.some((ele) =>
                         c.type_line.includes(ele)
