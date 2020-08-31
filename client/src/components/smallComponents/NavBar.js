@@ -11,7 +11,7 @@ export default function NavBar() {
       <NavLink to="/create">Deck</NavLink>
       <NavLink to="/trade">Collection</NavLink>
       <NavLink to="/wishlist">Wishlist</NavLink>
-      <NavLink to="/stats">Stats</NavLink>
+      {/* <NavLink to="/stats">Stats</NavLink> */}
     </Wrapper>
   );
 }

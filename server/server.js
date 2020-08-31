@@ -15,9 +15,8 @@ const port = 8000;
 
 app.post("/user", handleCreateUser);
 
+app.get("/decks/:email", handleDecks);
 app.post("/decks", handleSaveDeck);
-
-app.post("/home", handleDecks);
 
 const handleFourOhFour = (req, res) => {
   res

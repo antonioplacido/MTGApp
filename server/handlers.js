@@ -39,7 +39,8 @@ async function handleSaveDeck(req, res) {
 }
 
 const handleDecks = async (req, res) => {
-  const email = req.body.email;
+  const { email } = req.params;
+  console.log(email);
   try {
     const client = await MongoClient(MONGO_URI, options);
     await client.connect();

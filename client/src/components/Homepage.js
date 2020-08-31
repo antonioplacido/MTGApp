@@ -8,36 +8,35 @@ export default function Homepage() {
   const [list, setList] = useState([]);
   const appUser = useContext(AuthContext);
 
-  function getUserList() {
-    if (appUser) {
-      fetch("/home", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: appUser.email,
-        }),
-      })
-        .then((response) => response.json())
-        .then((json) => setList(json.data));
-    }
-  }
   useEffect(() => {
     getUserList();
-    console.log(list);
-    console.log(appUser);
   }, [appUser]);
+
+  function getUserList() {
+    if (appUser) {
+      fetch(`/decks/${appUser.appUser}`)
+        .then((response) => response.json())
+        .then((json) => {
+          console.log(json);
+          setList(json.data);
+        });
+    }
+  }
 
   const state = useSelector((state) => {
     return { authState: state.auth, deckState: state.deck };
   });
-
-  return (
-    <Wrapper>
-      <Header />
-      <button onClick={getUserList()}>CLICK TO POST</button>
-    </Wrapper>
+  return appUser ? (
+    <>
+      <Wrapper>
+        <Header />
+        <button onClick={() => getUserList()}>CLICK TO GET</button>
+      </Wrapper>
+    </>
+  ) : (
+    <>
+      <div>not loaded</div>
+    </>
   );
 }
 

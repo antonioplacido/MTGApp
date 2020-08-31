@@ -1,6 +1,6 @@
 const initialState = [];
 
-export default function collectionReducer(state = initialState, action) {
+export default function completeDecksReducer(state = initialState, action) {
   const stateCopy = { ...state };
 
   switch (action.type) {
