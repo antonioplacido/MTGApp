@@ -13,13 +13,14 @@ import { Icon } from "react-icons-kit";
 import { save } from "react-icons-kit/feather/save";
 import { list } from "react-icons-kit/feather/list";
 import { trash2 } from "react-icons-kit/feather/trash2";
-import appUser from "./AuthContext";
+import { useHistory } from "react-router-dom";
 
 export default function CreatePage() {
   // this page is rendering the DECK page
   const appUser = useContext(AuthContext);
   const state = useSelector((state) => state.deck);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   function saveCurrentDeck() {
     const decks = state.decks;
@@ -34,7 +35,11 @@ export default function CreatePage() {
           decks: decks,
           email: userEmail,
         }),
-      }).then((response) => response.json());
+      })
+        .then((response) => response.json())
+        .then(() => {
+          history.push("/home");
+        });
     }
   }
   return (
