@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { AuthContext } from "./AuthContext";
 import { database } from "firebase";
 import { useHistory } from "react-router-dom";
@@ -7,6 +8,7 @@ import styled from "styled-components";
 function Login() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const { signInWithGoogle } = useContext(AuthContext);
+  const state = useSelector((state) => state.auth);
   const history = useHistory();
   function handleGoogleSignIn() {
     signInWithGoogle()
@@ -27,10 +29,13 @@ function Login() {
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
+        console.log(json.data.email);
         setLoggedIn(true);
-        console.log(loggedIn)
       })
-      .then((data) => history.push("/home"));
+      .then((data) => {
+        history.push("/home");
+        console.log(loggedIn);
+      });
   }
   return (
     <>

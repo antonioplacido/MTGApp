@@ -24,6 +24,7 @@ async function handleCreateUser(req, res) {
 }
 
 async function handleSaveDeck(req, res) {
+  console.log(req.body);
   try {
     const client = await MongoClient(MONGO_URI, { useUnifiedTopology: true });
     await client.connect();

@@ -8,9 +8,6 @@ import giphy from "../assets/giphy.gif";
 export default function CommanderPage() {
   const [cards, setCards] = useState([]);
   const [query, setQuery] = useState(null);
-  const [currentPageUrl] = useState(
-    `https://api.scryfall.com/cards/search?q=is%3Acommander`
-  );
 
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -48,7 +45,7 @@ export default function CommanderPage() {
     }
 
     return () => cancel();
-  }, [currentPageUrl, query]);
+  }, [query]);
 
   if (loading)
     return <img src={giphy} height="800vh" width="2000vw" alt="Liliana Vess" />;

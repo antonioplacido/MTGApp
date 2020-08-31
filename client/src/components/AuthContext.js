@@ -35,10 +35,10 @@ const AuthProvider = ({ children, signOut, user }) => {
   };
   useEffect(() => {
     if (user && Object.keys(user).length > 0) {
-      setAppUser(user);
+      setAppUser(user.email);
     }
   }, [user]);
-  console.log(appUser, "---APP USER");
+
   return (
     <AuthContext.Provider
       value={{
@@ -47,7 +47,6 @@ const AuthProvider = ({ children, signOut, user }) => {
         signInWithEmail,
         signInWithGoogle,
         handleSignOut,
-        // message,
       }}
     >
       {children}

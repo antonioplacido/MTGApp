@@ -21,7 +21,7 @@ export default function WishlistPage() {
             <>
               {c.cardName && (
                 <CardName>
-                  <img src={c.image} />
+                  <img src={c.image} alt="wishlist cards" />
                   <div>{c.cardName}</div>
                   <div>{c.cardType}</div>
                   <div>{c.cmc}</div>

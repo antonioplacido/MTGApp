@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Header from "../components/smallComponents/Header";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
@@ -21,7 +21,7 @@ export default function TradePage() {
             <>
               {c.image && (
                 <div>
-                  <img src={c.image} />
+                  <img src={c.image} alt="trade card" />
                   <RemoveCard onClick={() => dispatch(removeCardTrade(c))}>
                     <Icon icon={trash2} />
                   </RemoveCard>

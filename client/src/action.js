@@ -57,3 +57,7 @@ export const saveDeck = () => {
 export const addCardWishListFromDeck = (card) => {
   return { type: "ADD_CARD_WISHLIST_DECK", card };
 };
+
+export const saveEmail = (email) => {
+  return { type: "SET_USER_EMAIL", email };
+};

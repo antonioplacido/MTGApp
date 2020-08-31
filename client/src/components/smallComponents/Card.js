@@ -10,7 +10,6 @@ import {
   addCardToDeck,
   addCardTrade,
   addCardWishList,
-  addCardCollection,
 } from "../../action";
 
 export default function Card({ cards }) {
@@ -67,11 +66,6 @@ export default function Card({ cards }) {
                         Deck
                       </DeckAdd>
                     )}
-                    {/* <CollectionAdd
-                      onClick={() => dispatch(addCardCollection(c))}
-                    >
-                      Collection
-                    </CollectionAdd> */}
                   </Buttons>
                 </div>
               )}

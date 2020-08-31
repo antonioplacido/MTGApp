@@ -6,7 +6,11 @@ const bodyParser = require("body-parser");
 require("es6-promise").polyfill();
 require("isomorphic-fetch");
 
-const { handleCreateUser, handleSaveDeck } = require("./handlers");
+const {
+  handleCreateUser,
+  handleSaveDeck,
+  handleGetDecks,
+} = require("./handlers");
 
 const app = express();
 app.use(helmet());
@@ -17,6 +21,8 @@ const port = 8000;
 app.post("/user", handleCreateUser);
 
 app.post("/decks", handleSaveDeck);
+
+app.get("/decks", handleGetDecks);
 
 const handleFourOhFour = (req, res) => {
   res

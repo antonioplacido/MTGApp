@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { AuthContext } from "./AuthContext";
 import Header from "../components/smallComponents/Header";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -12,11 +13,30 @@ import { Icon } from "react-icons-kit";
 import { save } from "react-icons-kit/feather/save";
 import { list } from "react-icons-kit/feather/list";
 import { trash2 } from "react-icons-kit/feather/trash2";
+import appUser from "./AuthContext";
 
 export default function CreatePage() {
   // this page is rendering the DECK page
+  const appUser = useContext(AuthContext);
   const state = useSelector((state) => state.deck);
   const dispatch = useDispatch();
+
+  function saveCurrentDeck() {
+    const decks = state.decks;
+    const userEmail = appUser.appUser;
+    if (appUser) {
+      fetch("/decks", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          decks: decks,
+          email: userEmail,
+        }),
+      }).then((response) => response.json());
+    }
+  }
   return (
     <Wrapper>
       <Header />
@@ -31,7 +51,12 @@ export default function CreatePage() {
             <OmegaDelete onClick={() => dispatch(clearDeck())}>
               Clear Deck
             </OmegaDelete>
-            <OmegaSave onClick={() => dispatch(saveDeck())}>
+            <OmegaSave
+              onClick={() => {
+                dispatch(saveDeck());
+                saveCurrentDeck();
+              }}
+            >
               <Icon icon={save} />
             </OmegaSave>
           </LeftSide>
@@ -75,9 +100,6 @@ export default function CreatePage() {
 const Wrapper = styled.div`
   img {
     height: 400px;
-  }
-  h1 {
-    padding: 20px;
   }
 `;
 
