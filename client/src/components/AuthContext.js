@@ -27,7 +27,7 @@ const AuthProvider = ({ children, signOut, user }) => {
   const [message, setMessage] = useState("");
   const handleSignOut = () => {
     signOut();
-    setAppUser({});
+    setAppUser(null);
   };
   const googleProvider = new firebase.auth.GoogleAuthProvider();
   const signInWithGoogle = () => {
@@ -39,6 +39,8 @@ const AuthProvider = ({ children, signOut, user }) => {
       setAppUser(user.email);
       console.log(appUser);
       console.log(user);
+    } else if (!user) {
+      setAppUser(null);
     }
   }, [user]);
 

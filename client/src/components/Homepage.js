@@ -7,13 +7,13 @@ import giphy from "../assets/giphy.gif";
 
 export default function Homepage() {
   const [list, setList] = useState([]);
-  const appUser = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
   const [loading, setLoading] = useState("");
 
   useEffect(() => {
     setLoading(true);
     console.log("click");
-    fetch(`/decks/${appUser.appUser}`)
+    fetch(`/decks/${authContext.appUser}`)
       .then((response) => response.json())
       .then((json) => {
         setList(json.data);
@@ -22,27 +22,24 @@ export default function Homepage() {
       .then((json) => {
         setLoading(false);
       });
-  }, [appUser]);
+  }, [authContext.appUser]);
+
+  function signOut() {
+    authContext.handleSignOut();
+  }
 
   function checkList() {
     console.log(list, "CHECKING");
-    console.log(appUser);
+    console.log(authContext);
   }
-
   if (loading)
     return <img src={giphy} height="800vh" width="2000vw" alt="Liliana Vess" />;
 
-  return appUser ? (
+  return authContext.appUser ? (
     <>
       <Wrapper>
         <Header />
-        <button
-          onClick={() => {
-            checkList();
-          }}
-        >
-          Please return data
-        </button>
+        {authContext.appUser && <button onClick={signOut}>Sign Out</button>}
         <DeckThumbnail>
           {list.map((d) => {
             return (
@@ -50,7 +47,9 @@ export default function Homepage() {
                 {d.decks.map((e) => {
                   return (
                     <>
-                      <Thumbnail src={e.commander.image} />
+                      <WholeCard>
+                        <Thumbnail src={e.commander.image} />
+                      </WholeCard>
                     </>
                   );
                 })}
@@ -72,6 +71,8 @@ const Thumbnail = styled.img`
   padding: 40px;
   height: 400px;
 `;
+
+const WholeCard = styled.div``;
 
 const Wrapper = styled.div``;
 
