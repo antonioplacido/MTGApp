@@ -9,10 +9,10 @@ import configStore from "./store";
 const store = configStore();
 
 ReactDOM.render(
-  <AuthProvider>
-    <Provider store={store}>
+  <Provider store={store}>
+    <AuthProvider>
       <App />
-    </Provider>
-  </AuthProvider>,
+    </AuthProvider>
+  </Provider>,
   document.getElementById("root")
 );
