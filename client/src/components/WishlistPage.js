@@ -9,7 +9,6 @@ import { send } from "react-icons-kit/feather/send";
 
 export default function WishlistPage() {
   const state = useSelector((state) => state.deck);
-  console.log(state);
   const dispatch = useDispatch();
   return (
     <Wrapper>
@@ -49,7 +48,12 @@ const Wrapper = styled.div`
   }
 `;
 
-const RemoveCard = styled.button``;
+const RemoveCard = styled.button`
+  svg {
+    position: fixed;
+    left: 50px;
+  }
+`;
 
 const Wishlist = styled.div`
   justify-content: space-around;

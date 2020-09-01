@@ -34,11 +34,8 @@ const AuthProvider = ({ children, signOut, user }) => {
     return firebase.auth().signInWithPopup(googleProvider);
   };
   useEffect(() => {
-    console.log(user, "THIS IS BEFORE THE IF IN EFFECT");
     if (user && Object.keys(user).length > 0 && user.email) {
       setAppUser(user.email);
-      console.log(appUser);
-      console.log(user);
     } else if (!user) {
       setAppUser(null);
     }

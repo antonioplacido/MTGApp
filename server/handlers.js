@@ -38,6 +38,21 @@ async function handleSaveDeck(req, res) {
   }
 }
 
+const handleSaveCollection = async (req, res) => {
+  const email = req.body.email;
+  try {
+    const client = await MongoClient(MONGO_URI, { useUnifiedTopology: true });
+    await client.connect();
+    const db = client.db("tolarian");
+    const addCollection = await db.collection("collection").insertOne(req.body);
+    assert.equal(1, addCollection.insertedCount);
+    client.close();
+    res.status(201).json({ status: 201, data: req.body });
+  } catch ({ message }) {
+    res.status(500).json({ status: 500, message });
+  }
+};
+
 const handleDecks = async (req, res) => {
   const { email } = req.params;
   console.log(email);
@@ -53,4 +68,9 @@ const handleDecks = async (req, res) => {
   }
 };
 
-module.exports = { handleCreateUser, handleSaveDeck, handleDecks };
+module.exports = {
+  handleSaveCollection,
+  handleCreateUser,
+  handleSaveDeck,
+  handleDecks,
+};

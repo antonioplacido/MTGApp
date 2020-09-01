@@ -18,13 +18,14 @@ import { useHistory } from "react-router-dom";
 export default function CreatePage() {
   // this page is rendering the DECK page
   const appUser = useContext(AuthContext);
-  const state = useSelector((state) => state.deck);
+  const createState = useSelector((state) => state.deck);
   const dispatch = useDispatch();
   const history = useHistory();
 
   function saveCurrentDeck() {
-    const decks = state.decks;
+    const decks = createState.decks;
     const userEmail = appUser.appUser;
+
     if (appUser) {
       fetch("/decks", {
         method: "post",
@@ -45,25 +46,30 @@ export default function CreatePage() {
   return (
     <Wrapper>
       <Header />
-      {state.commanderCard.image && (
+      {createState.commanderCard.image && (
         <DeckDrop>
           <LeftSide>
-            <CommanderName>{state.commanderCard.name}</CommanderName>
-            {state.commanderCard.image && (
-              <img src={state.commanderCard.image} alt="chosen commander"></img>
+            <CommanderName>{createState.commanderCard.name}</CommanderName>
+            {createState.commanderCard.image && (
+              <img
+                src={createState.commanderCard.image}
+                alt="chosen commander"
+              ></img>
             )}
-            <h2>Deck:{state.deckSize}</h2>
-            <OmegaDelete onClick={() => dispatch(clearDeck())}>
-              Clear Deck
-            </OmegaDelete>
-            <OmegaSave
-              onClick={() => {
-                dispatch(saveDeck());
-                saveCurrentDeck();
-              }}
-            >
-              <Icon icon={save} />
-            </OmegaSave>
+            <DeckStats>
+              <h2>Deck:{createState.deckSize}</h2>
+              <OmegaDelete onClick={() => dispatch(clearDeck())}>
+                Clear Deck
+              </OmegaDelete>
+              <OmegaSave
+                onClick={() => {
+                  dispatch(saveDeck());
+                  saveCurrentDeck();
+                }}
+              >
+                <Icon icon={save} />
+              </OmegaSave>
+            </DeckStats>
           </LeftSide>
           <RightSide>
             <Subs>
@@ -72,7 +78,7 @@ export default function CreatePage() {
               <div>CMC</div>
               <div>Remove/Wishlist</div>
             </Subs>
-            {state.the99.map((c) => {
+            {createState.the99.map((c) => {
               return (
                 <>
                   {c.cardName && (
@@ -101,6 +107,12 @@ export default function CreatePage() {
     </Wrapper>
   );
 }
+
+const DeckStats = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 250px;
+`;
 
 const Wrapper = styled.div`
   img {
