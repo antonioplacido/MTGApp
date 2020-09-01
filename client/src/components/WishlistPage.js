@@ -22,8 +22,6 @@ export default function WishlistPage() {
                 <CardName>
                   <img src={c.image} alt="wishlist cards" />
                   <div>{c.cardName}</div>
-                  <div>{c.cardType}</div>
-                  <div>{c.cmc}</div>
                   <RemoveCard onClick={() => dispatch(removeCardWishList(c))}>
                     <Icon icon={trash2} />
                   </RemoveCard>
@@ -48,15 +46,17 @@ const Wrapper = styled.div`
   }
 `;
 
-const RemoveCard = styled.button`
-  svg {
-    position: fixed;
-    left: 50px;
-  }
-`;
+const RemoveCard = styled.button``;
 
 const Wishlist = styled.div`
   justify-content: space-around;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  display: grid;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px 5px;
+  text-align: center;
+  height: 350px;
 `;
 
 const ExportButton = styled.button`
@@ -72,11 +72,7 @@ const ExportButton = styled.button`
 `;
 
 const CardName = styled.div`
-  display: flex;
   img {
     height: 300px;
-  }
-  div {
-    width: 20em;
   }
 `;
