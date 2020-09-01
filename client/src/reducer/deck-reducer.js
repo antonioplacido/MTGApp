@@ -132,7 +132,11 @@ export default function deckReducer(state = initialState, action) {
         cmc: action.card.cmc,
       });
       return stateCopy;
-
+    case "CLEAR_COLLECTION":
+      return {
+        ...state,
+        trade: [],
+      };
     default:
       return stateCopy;
   }

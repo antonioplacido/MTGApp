@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Icon } from "react-icons-kit";
 import { trash2 } from "react-icons-kit/feather/trash2";
-import { removeCardTrade } from "../../src/action";
+import { removeCardTrade, clearCollection } from "../../src/action";
 import { AuthContext } from "./AuthContext";
 import { save } from "react-icons-kit/feather/save";
 import { useHistory } from "react-router-dom";
@@ -51,7 +51,7 @@ export default function TradePage() {
       })
         .then((response) => response.json())
         .then(() => {
-          history.push("/trade");
+          window.location.reload();
         });
     }
   }
@@ -67,7 +67,12 @@ export default function TradePage() {
         <h1>
           {" "}
           Collection{" "}
-          <button onClick={saveCurrentCollection}>
+          <button
+            onClick={() => {
+              dispatch(clearCollection());
+              saveCurrentCollection();
+            }}
+          >
             <Icon icon={save}></Icon>
           </button>
         </h1>

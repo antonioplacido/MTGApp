@@ -54,6 +54,10 @@ export const saveDeck = () => {
   return { type: "SAVE_DECK" };
 };
 
+export const clearCollection = () => {
+  return { type: "CLEAR_COLLECTION" };
+};
+
 export const addCardWishListFromDeck = (card) => {
   return { type: "ADD_CARD_WISHLIST_DECK", card };
 };
