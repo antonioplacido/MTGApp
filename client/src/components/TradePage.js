@@ -37,8 +37,9 @@ export default function TradePage() {
 
 const Wrapper = styled.div`
   justify-content: center;
+  width: 100vw;
   img {
-    height: 400px;
+    height: 300px;
   }
   h1 {
     padding: 20px;
@@ -48,7 +49,12 @@ const Wrapper = styled.div`
 `;
 
 const Collection = styled.div`
-  display: flex;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  align-items: center;
+  text-align: center;
+  height: 300px;
 `;
 
 const RemoveCard = styled.button``;

@@ -131,7 +131,8 @@ export default function deckReducer(state = initialState, action) {
         cardName: action.card.cardName,
         cmc: action.card.cmc,
       });
-      break;
+      return stateCopy;
+
     default:
       return stateCopy;
   }

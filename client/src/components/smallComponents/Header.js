@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import NavBar from "./NavBar";
+import { AuthContext } from "../AuthContext";
+import { useHistory } from "react-router-dom";
 
 export default function Header() {
+  const authContext = useContext(AuthContext);
+  const history = useHistory();
+  function signOut() {
+    authContext.handleSignOut();
+    history.push("/");
+  }
   return (
     <Wrapper>
+      <SignAndGreeting>
+        {authContext.appUser && <button onClick={signOut}>Sign Out</button>}
+      </SignAndGreeting>
       <Title>Tolarian</Title>
       <NavBar />
     </Wrapper>
@@ -23,4 +34,13 @@ const Wrapper = styled.div`
   font-size: 1.5em;
   font-weight: 600;
   text-align: center;
+`;
+
+const SignAndGreeting = styled.div`
+  button {
+    padding: 6px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+  }
 `;

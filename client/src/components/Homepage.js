@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import Header from "../components/smallComponents/Header";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
 import { AuthContext } from "./AuthContext";
 import giphy from "../assets/giphy.gif";
 
@@ -9,10 +8,10 @@ export default function Homepage() {
   const [list, setList] = useState([]);
   const authContext = useContext(AuthContext);
   const [loading, setLoading] = useState("");
+  const [revealdeck, setRevealDeck] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    console.log("click");
     fetch(`/decks/${authContext.appUser}`)
       .then((response) => response.json())
       .then((json) => {
@@ -24,45 +23,51 @@ export default function Homepage() {
       });
   }, [authContext.appUser]);
 
-  function signOut() {
-    authContext.handleSignOut();
-  }
-
-  function checkList() {
-    console.log(list, "CHECKING");
-    console.log(authContext);
-  }
   if (loading)
     return <img src={giphy} height="800vh" width="2000vw" alt="Liliana Vess" />;
 
+  console.log(list);
   return authContext.appUser ? (
     <>
       <Wrapper>
         <Header />
-        {authContext.appUser && <button onClick={signOut}>Sign Out</button>}
-        <DeckThumbnail>
-          {list.map((d) => {
-            return (
-              <>
-                {d.decks.map((e) => {
-                  return (
-                    <>
-                      <WholeCard>
-                        <Thumbnail src={e.commander.image} />
-                      </WholeCard>
-                    </>
-                  );
-                })}
-              </>
-            );
-          })}
-        </DeckThumbnail>
-        {list.length > 0 && <div>it detected the decks</div>}
+        {list.length > 0 && (
+          <DeckThumbnail>
+            {list.map((d) => {
+              return (
+                <>
+                  {d.decks.map((e) => {
+                    return (
+                      <>
+                        <WholeCard>
+                          <Thumbnail
+                            src={e.commander.image}
+                            onClick={() => setRevealDeck(!revealdeck)}
+                          />
+                          {revealdeck &&
+                            e.deck.map((the99) => {
+                              return (
+                                <>
+                                  <DeckCard>
+                                    <img src={the99.image} />
+                                  </DeckCard>
+                                </>
+                              );
+                            })}
+                        </WholeCard>
+                      </>
+                    );
+                  })}
+                </>
+              );
+            })}
+          </DeckThumbnail>
+        )}
       </Wrapper>
     </>
   ) : (
     <>
-      <div>not loaded</div>
+      <div>Please sign in</div>
     </>
   );
 }
@@ -70,10 +75,29 @@ export default function Homepage() {
 const Thumbnail = styled.img`
   padding: 40px;
   height: 400px;
+  display: flex;
+  cursor: pointer;
 `;
 
-const WholeCard = styled.div``;
+const WholeCard = styled.div`
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 2em;
+  /* position: relative; */
+  display: grid;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px 5px;
+  text-align: center;
+  height: 350px;
+`;
 
 const Wrapper = styled.div``;
 
 const DeckThumbnail = styled.div``;
+
+const DeckCard = styled.div`
+  img {
+    height: 200px;
+    position: relative;
+  }
+`;
