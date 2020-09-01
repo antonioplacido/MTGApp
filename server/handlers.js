@@ -68,9 +68,24 @@ const handleDecks = async (req, res) => {
   }
 };
 
+const handleCollection = async (req, res) => {
+  const { email } = req.params;
+  try {
+    const client = await MongoClient(MONGO_URI, options);
+    await client.connect();
+    const db = client.db("tolarian");
+    const r = await db.collection("collection").find({ email }).toArray();
+    client.close();
+    res.status(200).json({ data: r });
+  } catch ({ message }) {
+    res.status(500).json({ status: 500, message });
+  }
+};
+
 module.exports = {
   handleSaveCollection,
   handleCreateUser,
   handleSaveDeck,
   handleDecks,
+  handleCollection,
 };

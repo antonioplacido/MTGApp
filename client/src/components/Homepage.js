@@ -26,7 +26,6 @@ export default function Homepage() {
   if (loading)
     return <img src={giphy} height="800vh" width="2000vw" alt="Liliana Vess" />;
 
-  console.log(list);
   return authContext.appUser ? (
     <>
       <Wrapper>
@@ -49,7 +48,7 @@ export default function Homepage() {
                               return (
                                 <>
                                   <DeckCard>
-                                    <img src={the99.image} />
+                                    <img src={the99.image} alt="thealtname" />
                                   </DeckCard>
                                 </>
                               );

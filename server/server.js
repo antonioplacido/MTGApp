@@ -10,6 +10,7 @@ const {
   handleSaveDeck,
   handleDecks,
   handleSaveCollection,
+  handleCollection,
 } = require("./handlers");
 
 const app = express();
@@ -20,13 +21,12 @@ const port = 8000;
 
 app.post("/user", handleCreateUser);
 app.post("/collection", handleSaveCollection);
+app.get("/collection/:email", handleCollection);
 app.get("/decks/:email", handleDecks);
 app.post("/decks", handleSaveDeck);
 
 const handleFourOhFour = (req, res) => {
-  res
-    .status(404)
-    .json({ message: "Sorry we couldn't find what you were looking for..." });
+  res.status(404).json({ message: "Something's wrong with your backend" });
 };
 
 app.get("/*", handleFourOhFour);

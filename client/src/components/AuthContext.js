@@ -24,7 +24,6 @@ function signInWithEmail(email, password) {
 }
 const AuthProvider = ({ children, signOut, user }) => {
   const [appUser, setAppUser] = useState(null);
-  const [message, setMessage] = useState("");
   const handleSignOut = () => {
     signOut();
     setAppUser(null);

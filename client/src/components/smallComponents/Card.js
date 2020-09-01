@@ -87,8 +87,6 @@ const CardWrapper = styled.div`
 
 const CommanderAdd = styled.button``;
 
-const CollectionAdd = styled.button``;
-
 const WishlistAdd = styled.button``;
 
 const TradeAdd = styled.button``;
